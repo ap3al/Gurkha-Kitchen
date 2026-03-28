@@ -349,62 +349,160 @@
     .showcase-item-label em { font-size: 0.77rem; color: rgba(255,255,255,0.48); font-style: normal; }
 
     /* ── MENU ── */
-    #menu { background: var(--bg); }
-    .menu-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; }
-    .menu-tab {
-      padding: 0.55rem 1.5rem; border-radius: 30px; font-size: 0.8rem; font-weight: 500;
-      cursor: pointer; border: 1.5px solid var(--border-strong);
-      background: transparent; color: var(--text-secondary);
-      transition: all .25s; letter-spacing: 0.05em; font-family: 'Jost', sans-serif;
-    }
-    .menu-tab:hover { border-color: var(--bronze); color: var(--bronze); }
-    .menu-tab.active { background: var(--red); border-color: var(--red); color: #fff; }
-    .menu-section { display: none; animation: fadeInMenu .4s ease; }
-    .menu-section.active { display: block; }
-    @keyframes fadeInMenu { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+   #menu {
+  background: var(--bg);
+}
 
-    .menu-category-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600;
-      color: var(--text-primary); margin: 2.2rem 0 0.5rem;
-      padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .cat-icon { font-size: 1.2rem; }
-    .menu-category-sub { font-size: 0.84rem; color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-style: italic; }
-    .menu-items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; margin-bottom: 8px; }
-    .menu-item {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      padding: 14px 18px; background: var(--bg-card); border-radius: var(--radius); gap: 14px;
-      border: 1px solid var(--border);
-      transition: border-color .25s, transform .25s, box-shadow .25s;
-    }
-    .menu-item:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,154,90,0.08); }
-    .menu-item-left { flex: 1; }
-    .menu-item-name { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); }
-    .menu-item-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 300; line-height: 1.45; margin-top: 3px; }
-    .menu-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--bronze); white-space: nowrap; flex-shrink: 0; }
-    .menu-variants { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 7px; margin-bottom: 7px; }
-    .menu-variant {
-      display: flex; justify-content: space-between; padding: 10px 15px;
-      background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border);
-      transition: border-color .2s, transform .2s;
-    }
-    .menu-variant:hover { border-color: var(--border-strong); transform: translateY(-1px); }
-    .menu-variant-name { font-size: 0.88rem; color: var(--text-secondary); }
-    .menu-variant-price { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--bronze); }
-    .menu-item-badge { display: inline-block; font-size: 0.63rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
-    .badge-veg     { background: rgba(46,125,50,0.15); color: #4caf50; }
-    .badge-spicy   { background: rgba(198,40,40,0.15); color: #ef5350; }
-    .badge-popular { background: rgba(230,81,0,0.15);  color: #ff7043; }
-    .badge-special { background: rgba(106,27,154,0.15);color: #ab47bc; }
-    .badge-fish    { background: rgba(21,101,192,0.15); color: #42a5f5; }
-    .takeaway-note {
-      background: var(--surface); border-radius: 12px; padding: 1.8rem 2rem;
-      margin-top: 3.5rem; display: flex; align-items: center; gap: 20px;
-      font-size: 0.9rem; color: var(--text-secondary); border: 1px solid var(--border);
-    }
-    .takeaway-note strong { color: var(--bronze); }
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2.5rem;
+  justify-content: flex-start;
+}
 
+.menu-tab {
+  padding: 0.55rem 1.5rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1.5px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  letter-spacing: 0.05em;
+  font-family: 'Jost', sans-serif;
+  white-space: nowrap;
+}
+
+.menu-tab:hover {
+  border-color: var(--bronze);
+  color: var(--bronze);
+}
+
+.menu-tab.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* Menu Sections */
+.menu-section {
+  display: none;
+  animation: fadeInMenu 0.4s ease forwards;
+}
+
+.menu-section.active {
+  display: block;
+}
+
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rest of your CSS (unchanged but cleaned) */
+.menu-category-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 2.2rem 0 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-icon {
+  font-size: 1.2rem;
+}
+
+.menu-category-sub {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.menu-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  gap: 14px;
+  border: 1px solid var(--border);
+  transition: all 0.25s ease;
+}
+
+.menu-item:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196, 154, 90, 0.08);
+}
+
+.menu-item-left {
+  flex: 1;
+}
+
+.menu-item-name {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.menu-item-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.menu-item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: var(--bronze);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+/* Mobile responsiveness for tabs */
+@media (max-width: 768px) {
+  .menu-tabs {
+    gap: 8px;
+  }
+  
+  .menu-tab {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.8rem;
+  }
+  
+  .menu-items-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
     /* ── EXPERIENCE ── */
     #experience { background: #080604; padding: 0; display: block; }
     .exp-hero { position: relative; height: 520px; overflow: hidden; }
@@ -607,7 +705,7 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">Campoamor · Dehesa De Campoamor· Alicante</div>
+    <div class="hero-tag">· Dehesa De Campoamor · Alicante</div>
     <h1>Nepali &amp; Indian<br /><em>Cuisine</em><br />by the Sea</h1>
     <p class="hero-sub">From handcrafted Mo:Mo dumplings to sizzling Tandoori platters — 100+ authentic Himalayan dishes on the Costa Blanca.</p>
     <div class="hero-btns">
@@ -681,261 +779,248 @@
     </div>
   </div>
 </section>
-
-<!-- MENU -->
+<!-- MENU SECTION -->
 <section id="menu">
   <div class="reveal">
     <div class="section-tag">Our Menu</div>
     <h2>What We <em>Serve</em></h2>
     <p class="section-lead">Browse our full menu — from light starters to hearty mains. Available for dine-in and takeaway.</p>
   </div>
+
+  <!-- Menu Tabs -->
   <div class="menu-tabs reveal">
-    <button class="menu-tab active" onclick="showMenu(event,'starters')">Starters</button>
-    <button class="menu-tab" onclick="showMenu(event,'tandoori')">Tandoori Sizzlers</button>
-    <button class="menu-tab" onclick="showMenu(event,'mains')">Main Courses</button>
-    <button class="menu-tab" onclick="showMenu(event,'vegetarian')">Vegetarian</button>
-    <button class="menu-tab" onclick="showMenu(event,'biryani')">Biryani &amp; Rice</button>
-    <button class="menu-tab" onclick="showMenu(event,'bread')">Bread</button>
-    <button class="menu-tab" onclick="showMenu(event,'specials')">House Specials</button>
+    <button class="menu-tab active" onclick="showMenu(event, 'tab-starters')">Starters</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-soup')">Soup</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-salad')">Salad</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-tandoori')">Tandoori Sizzlers</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-specials')">House Specials</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-popular')">Popular Dishes</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-mains')">Main Courses</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-vegetarian')">Vegetarian</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-biryani')">Biryani & Rice</button>
+    <button class="menu-tab" onclick="showMenu(event, 'tab-bread')">Bread</button>
   </div>
 
   <!-- STARTERS -->
-<div class="menu-section active" id="tab-starters">
+  <div class="menu-section active" id="tab-starters">
+    <div class="menu-category-title">🫓 Appetizer</div>
+    <div class="menu-items-grid">
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <div class="menu-item-name">1. Papadom</div>
+          <div class="menu-item-desc">Crispy lentil crackers</div>
+        </div>
+        <div class="menu-item-price">1,50€</div>
+      </div>
+    </div>
 
-<div class="menu-category-title">🫓 Appetizer</div>
-<div class="menu-items-grid">
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">1. Papadom</div>
-<div class="menu-item-desc">Crispy lentil crackers</div>
-</div>
-<div class="menu-item-price">1,50€</div>
-</div>
-</div>
+    <div class="menu-category-title">🥟 Starters</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">8. Onion Bhaji</div><div class="menu-item-desc">Ceblla rebozada con harina de garbanzos y frita</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">9. Veg Pakora</div><div class="menu-item-desc">Verduras de temporada fritas en puré con harina de gramo y especias</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">10. Paneer Pakora</div><div class="menu-item-desc">Tempura de queso casero con especias de harina de garbanzos y frito</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">11. Chicken Pakora</div><div class="menu-item-desc">Pollo rebozado con especias de harina de garbanzos</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">12. King Prawn Pakora</div><div class="menu-item-desc">Tempura de langostinos con especias de harina de garbanzos</div></div><div class="menu-item-price">7,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">13. Veg Samosa</div><div class="menu-item-desc">Hojaldre frito relleno de patatas y guisantes condimentados</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">14. Meat Samosa</div><div class="menu-item-desc">Hojaldre frito relleno de carne picada y guisantes condimentados</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">15. Steam Mo:Mo</div><div class="menu-item-desc">Empanadillas al vapor rellenas de carne picada</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">16. Chilli Mo:Mo</div><div class="menu-item-desc">Empanadillas de carne picada y especias salteado con pimientos mixtos, cebolla, ajo con salsa dulce picante</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">17. Seekh Kebab</div><div class="menu-item-desc">Carne picada con hierbas y especias, al horno tandoori</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">18. Chicken Tikka</div><div class="menu-item-desc">Marinado con yogur y especias, al horno tandoori</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">19. Chicken Choila</div><div class="menu-item-desc">Pequeños trozos de pollo deshuesado marinados con cebolla fresca, tomate, cilantro y zumo de limón</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">20. Mixed Starter</div><div class="menu-item-desc">Una selección de cebolla bhaji, pollo tikka, pollo pakora y pakora de verduras</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">21. Prawn Puri</div><div class="menu-item-desc">Langostinos con especias nepalesas y servidas en pan frito</div></div><div class="menu-item-price">6,50€</div></div>
+    </div>
+  </div>
 
-<div class="menu-category-title">🍜 Soup & Salad</div>
-<div class="menu-items-grid">
+  <!-- SOUP -->
+  <div class="menu-section" id="tab-soup">
+    <div class="menu-category-title">🥣 Soup</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">2. Dal Soup</div><div class="menu-item-desc">Sopa de lentejas con hierbas y especias de las Himalayas</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">3. Tomato Soup</div><div class="menu-item-desc">Sopa de tomate con especias aromáticas y nata</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">4. Chicken Soup</div><div class="menu-item-desc">Sopa de pollo con hierbas y especias</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">5. Special Soup</div><div class="menu-item-desc">Verduras de temporada, langostinos y pollo cocinados con cebolla, cilantro y zumo de limón</div></div><div class="menu-item-price">6,50€</div></div>
+    </div>
+  </div>
 
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">2. Dal Soup</div>
-<div class="menu-item-desc">Lentil soup with Himalayan herbs and spices</div>
-</div>
-<div class="menu-item-price">5,00€</div>
-</div>
+  <!-- SALAD -->
+  <div class="menu-section" id="tab-salad">
+    <div class="menu-category-title">🥗 Salad</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">6. Green Salad</div><div class="menu-item-desc">Ensalada verde fresca</div></div><div class="menu-item-price">6,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">7. Raita</div><div class="menu-item-desc">Yogur mezclado con pepino, tomate, cilantro y comino</div></div><div class="menu-item-price">5,00€</div></div>
+    </div>
+  </div>
 
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">3. Tomato Soup</div>
-<div class="menu-item-desc">With aromatic spices and cream</div>
-</div>
-<div class="menu-item-price">5,00€</div>
-</div>
+  <!-- TANDOORI SIZZLERS -->
+  <div class="menu-section" id="tab-tandoori">
+    <div class="menu-category-title">🔥 Tandoori Sizzlers</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">22. Tandoori Chicken</div><div class="menu-item-desc">Muslo de pollo marinado con especias, hierbas al horno tandoori</div></div><div class="menu-item-price">11,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">23. Paneer Tikka Shashlik</div><div class="menu-item-desc">Queso casero marinado con yogur, jengibre, ajo y hierbas nepalesas y con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">15,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">24. Chicken Tikka Shashlik</div><div class="menu-item-desc">Asado con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">25. Lamb Tikka Shashlik</div><div class="menu-item-desc">Asado con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">26. King Prawn Shashlik</div><div class="menu-item-desc">Langostinos asados con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">16,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">27. Chicken Malai Tikka</div><div class="menu-item-desc">Pechuga de pollo marinada con anacardos, queso, cardamomo y especias</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">28. Chicken Pahadi Tikka</div><div class="menu-item-desc">Marinado con especias nepales y chiles verdes</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">29. Tandoori Salmon</div><div class="menu-item-desc">Marinado con pasta de ajo y jengibre con limón fresco y hierbas nepalesas</div></div><div class="menu-item-price">17,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">30. Tandoori King Prawns</div><div class="menu-item-desc">Marinados con jengibre, ajo, limón, hierbas y especias</div></div><div class="menu-item-price">15,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">31. Chicken Sekuwa</div><div class="menu-item-desc">Marinado con yogur, jengibre, ajo y hierbas nepalesas, al horno tandoori</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">32. Lamb Sekuwa</div><div class="menu-item-desc">Marinado con yogur, jengibre, ajo y hierbas nepalesas, al horno tandoori</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">33. Chicken Tikka Sizzler</div><div class="menu-item-desc">Pechuga de pollo marinado con especias y hierbas al horno tandoori</div></div><div class="menu-item-price">12,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">34. Lamb Tikka Sizzler</div><div class="menu-item-desc">Trozos de cordero marinado con especias y hierbas al horno tandoori</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">35. Mixed Grill</div><div class="menu-item-desc">Una selección de pollo tandoori, pollo tikka, cordero tikka, seekh kebab y langostinos tandoori</div></div><div class="menu-item-price">16,50€</div></div>
+    </div>
+  </div>
 
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">4. Chicken Soup</div>
-</div>
-<div class="menu-item-price">6,00€</div>
-</div>
+  <!-- HOUSE SPECIALS -->
+  <div class="menu-section" id="tab-specials">
+    <div class="menu-category-title">👨‍🍳 House Specials</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">36. Garlic Chilli Chicken</div><div class="menu-item-desc">Pollo cocinado con pimentos, cebolla, ajo, chile verde y especias de las Himalayas</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">37. Garlic Chilli King Prawn</div><div class="menu-item-desc">Langostinos cocinado con pimentos, cebolla, ajo, chile verde y especias de las Himalayas</div></div><div class="menu-item-price">15,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">38. Chicken Lababdar</div><div class="menu-item-desc">Cocinados en una salsa exótica con pimientos, cebolla y nata fresca con un sabor de fenogreco</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">39. Lamb Lababdar</div><div class="menu-item-desc">Cocinados en una salsa exótica con pimientos, cebolla y nata fresca con un sabor de fenogreco</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">40. Goan Chicken</div><div class="menu-item-desc">Pollo cocinado con cebolla, hojas de curry, especias y leche de coco</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">41. Goan Lamb</div><div class="menu-item-desc">Cordero cocinado con cebolla, hojas de curry, especias y leche de coco</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">42. Goan King Prawn</div><div class="menu-item-desc">Langostinos cocinados con cebolla, hojas de curry, especias y leche de coco</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
+  </div>
 
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">5. Special Soup</div>
-</div>
-<div class="menu-item-price">6,50€</div>
-</div>
+  <!-- POPULAR DISHES -->
+  <div class="menu-section" id="tab-popular">
+    <div class="menu-category-title">⭐ Popular Dishes</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">43. Butter Chicken</div><div class="menu-item-desc">Pollo en salsa cremosa de mantequilla, almendras, tomate y varias especias</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">44. Mango Chicken</div><div class="menu-item-desc">Cocinado con salsa de mango cremosa, salsa y especias suaves</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">45. Rato Bhale Chicken</div><div class="menu-item-desc">Plato tradicional nepali preparado con polvo de anacardo, nata y pimiento</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">46. Chicken Tikka Timuri</div><div class="menu-item-desc">Plato especial de las Himalayas preparado con hierbas especiales de la montaña</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">47. Rara Lamb</div><div class="menu-item-desc">Cordero cocinado con carne picada y hierbas</div></div><div class="menu-item-price">14,50€</div></div>
+    </div>
+  </div>
 
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">6. Green Salad</div>
-</div>
-<div class="menu-item-price">6,00€</div>
-</div>
+  <!-- MAIN COURSES -->
+  <div class="menu-section" id="tab-mains">
+    <div class="menu-category-title">Main Courses</div>
 
-<div class="menu-item">
-<div class="menu-item-left">
-<div class="menu-item-name">7. Raita</div>
-</div>
-<div class="menu-item-price">5,00€</div>
-</div>
+    <div class="menu-subcategory">Tikka Masala</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">48. Chicken Tikka Masala</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">49. Lamb Tikka Masala</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">50. King Prawn Tikka Masala</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
 
-</div>
+    <div class="menu-subcategory">Korma</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">51. Chicken Korma</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">52. Lamb Korma</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">53. King Prawn Korma</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
 
+    <div class="menu-subcategory">Curry</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">54. Chicken Curry</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">55. Lamb Curry</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">56. King Prawn Curry</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
 
-<div class="menu-category-title">🥟 Starters</div>
-<div class="menu-items-grid">
+    <div class="menu-subcategory">Madras</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">57. Chicken Madras</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">58. Lamb Madras</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">59. King Prawn Madras</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
 
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">8. Onion Bhaji</div></div><div class="menu-item-price">5,00€</div></div>
+    <div class="menu-subcategory">Kadai</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">60. Chicken Kadai</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">61. Lamb Kadai</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">62. King Prawn Kadai</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
 
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">9. Veg Pakora</div></div><div class="menu-item-price">5,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">10. Paneer Pakora</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">11. Chicken Pakora</div></div><div class="menu-item-price">5,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">12. King Prawn Pakora</div></div><div class="menu-item-price">7,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">13. Veg Samosa</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">14. Meat Samosa</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">15. Steam Mo:Mo</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">16. Chilli Mo:Mo</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">17. Seekh Kebab</div></div><div class="menu-item-price">5,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">18. Chicken Tikka</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">19. Chicken Choila</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">20. Mixed Starter</div></div><div class="menu-item-price">6,00€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">21. Prawn Puri</div></div><div class="menu-item-price">6,50€</div></div>
-
-</div>
-</div>
-
- <!-- TANDOORI -->
-<div class="menu-section" id="tab-tandoori">
-
-<div class="menu-category-title">🔥 Tandoori Sizzlers</div>
-
-<div class="menu-items-grid">
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">22. Tandoori Chicken</div></div><div class="menu-item-price">11,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">23. Paneer Tikka Shashlik</div></div><div class="menu-item-price">15,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">24. Chicken Tikka Shashlik</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">25. Lamb Tikka Shashlik</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">26. King Prawn Shashlik</div></div><div class="menu-item-price">16,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">27. Chicken Malai Tikka</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">28. Chicken Pahadi Tikka</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">29. Tandoori Salmon</div></div><div class="menu-item-price">17,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">30. Tandoori King Prawns</div></div><div class="menu-item-price">15,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">31. Chicken Sekuwa</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">32. Lamb Sekuwa</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">33. Chicken Tikka Sizzler</div></div><div class="menu-item-price">12,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">34. Lamb Tikka Sizzler</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">35. Mixed Grill</div></div><div class="menu-item-price">16,50€</div></div>
-
-</div>
-</div>
-
- <!-- HOUSE SPECIALS -->
-<div class="menu-section" id="tab-specials">
-
-<div class="menu-category-title">👨‍🍳 House Specials</div>
-
-<div class="menu-items-grid">
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">36. Garlic Chilli Chicken</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">37. Garlic Chilli King Prawn</div></div><div class="menu-item-price">15,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">38. Chicken Lababdar</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">39. Lamb Lababdar</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">40. Goan Chicken</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">41. Goan Lamb</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">42. Goan King Prawn</div></div><div class="menu-item-price">15,50€</div></div>
-
-</div>
-</div>
+    <div class="menu-subcategory">Balti</div>
+    <div class="menu-items-grid">
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">63. Chicken Balti</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">64. Lamb Balti</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">65. King Prawn Balti</div></div><div class="menu-item-price">15,50€</div></div>
+    </div>
+  </div>
 
   <!-- VEGETARIAN -->
   <div class="menu-section" id="tab-vegetarian">
-    <div class="menu-category-title"><span class="cat-icon">🥦</span> Vegetarian Dishes</div>
+    <div class="menu-category-title">🥦 Vegetarian Dishes</div>
     <div class="menu-items-grid">
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">65. Aloo Gobi <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Cauliflower with potato, cooked with spices</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">66. Saag Aloo <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Spinach with potato cooked with onion and tomato</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">67. Mustang Aloo <span class="menu-item-badge badge-special">🏔 Nepali</span></div><div class="menu-item-desc">Potatoes cooked with cumin and Nepali spices</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">68. Chana Masala <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Chickpeas cooked with tomato, onion, sauce and spices</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">69. Tarka Dal <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Lentil stew</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">70. Mutter Mushrooms <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Peas with cheese in a smooth creamy sauce</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">71. Baigan Achari <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Aubergine cooked with tomato, onion and Himalayan spices</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">72. Mixed Vegetables <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Mixed vegetables with curry sauce and spices</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">73. Palak Paneer <span class="menu-item-badge badge-veg">🌿 Veg</span></div><div class="menu-item-desc">Homemade cheese cooked with spinach and spices</div></div><div class="menu-item-price">11,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">66. Aloo Gobi</div><div class="menu-item-desc">Coliflor con patatas, cocinado con especias</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">67. Saag Aloo</div><div class="menu-item-desc">Espinaca con patata cocida con cebolla y tomate</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">68. Mustang Aloo</div><div class="menu-item-desc">Patatas cocinados con comino y especias nepalesas</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">69. Chana Masala</div><div class="menu-item-desc">Garbanzos cocinados con tomate, cebolla con salsa y especias</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">70. Tadka Dal</div><div class="menu-item-desc">Guiso de lentejas</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">71. Mutter Mushrooms</div><div class="menu-item-desc">Guisantes con queso casero cocidos en salsa cremosa suave</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">72. Baigan Achari</div><div class="menu-item-desc">Berenjena cocinados con tomate, cebolla con salsa y especias de las Himalayas</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">73. Mixed Vegetables</div><div class="menu-item-desc">Verduras mixtas con salsa de curry y especias</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">74. Palak Paneer</div><div class="menu-item-desc">Queso casero cocinado con espinacas y especias</div></div><div class="menu-item-price">11,50€</div></div>
     </div>
   </div>
 
   <!-- BIRYANI & RICE -->
   <div class="menu-section" id="tab-biryani">
-    <div class="menu-category-title"><span class="cat-icon">🍚</span> Biryani</div>
+    <div class="menu-category-title">🍚 Biryani</div>
     <p class="menu-category-sub">Cooked with Basmati rice, saffron, dried fruit and aromatic spices</p>
     <div class="menu-items-grid">
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">74. Veg Biryani <span class="menu-item-badge badge-veg">🌿 Veg</span></div></div><div class="menu-item-price">11,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">75. Chicken Biryani</div></div><div class="menu-item-price">13,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">76. Lamb Biryani</div></div><div class="menu-item-price">14,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">77. King Prawn Biryani</div></div><div class="menu-item-price">16,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">78. Special Biryani <span class="menu-item-badge badge-popular">⭐ Popular</span></div><div class="menu-item-desc">A special combination of chicken, lamb and king prawns</div></div><div class="menu-item-price">15,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">75. Veg Biryani</div></div><div class="menu-item-price">11,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">76. Chicken Biryani</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">77. Lamb Biryani</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">78. King Prawn Biryani</div></div><div class="menu-item-price">16,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">79. Special Biryani</div><div class="menu-item-desc">Combination of chicken, lamb and king prawns</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-    <div class="menu-category-title"><span class="cat-icon">🌾</span> Rice</div>
+
+    <div class="menu-category-title">🌾 Rice</div>
     <div class="menu-items-grid">
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">79. Basmati Rice</div></div><div class="menu-item-price">3,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">80. Pilau Rice</div></div><div class="menu-item-price">4,00€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">81. Lemon Rice</div></div><div class="menu-item-price">4,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">82. Garlic Rice</div></div><div class="menu-item-price">4,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">83. Egg Fried Rice</div></div><div class="menu-item-price">4,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">84. Kashmiri Rice</div></div><div class="menu-item-price">4,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">85. Vegetable Rice</div></div><div class="menu-item-price">4,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">80. Basmati</div></div><div class="menu-item-price">3,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">81. Pilau</div></div><div class="menu-item-price">4,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">82. Lemon Rice</div></div><div class="menu-item-price">4,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">83. Garlic Rice</div></div><div class="menu-item-price">4,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">84. Egg Fried Rice</div></div><div class="menu-item-price">4,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">85. Kashmiri Rice</div></div><div class="menu-item-price">4,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">86. Vegetable Rice</div></div><div class="menu-item-price">4,50€</div></div>
     </div>
   </div>
 
   <!-- BREAD -->
   <div class="menu-section" id="tab-bread">
-    <div class="menu-category-title"><span class="cat-icon">🫓</span> Naan &amp; Bread</div>
+    <div class="menu-category-title">🫓 Naan & Bread</div>
     <div class="menu-items-grid">
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">86. Normal Naan</div></div><div class="menu-item-price">3,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">87. Garlic Naan</div></div><div class="menu-item-price">4,00€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">88. Cheese Naan</div></div><div class="menu-item-price">5,00€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">89. Peshwari Naan</div></div><div class="menu-item-price">5,00€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">90. Butter Naan</div></div><div class="menu-item-price">4,00€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">91. Roti</div></div><div class="menu-item-price">3,00€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">92. Paratha</div></div><div class="menu-item-price">3,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">93. Chapati</div></div><div class="menu-item-price">3,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">87. Normal Naan</div></div><div class="menu-item-price">3,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">88. Garlic Naan</div></div><div class="menu-item-price">4,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">89. Cheese Naan</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">90. Peshwari Naan</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">91. Butter Naan</div></div><div class="menu-item-price">4,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">92. Roti</div></div><div class="menu-item-price">3,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">93. Paratha</div></div><div class="menu-item-price">3,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">94. Chapati</div></div><div class="menu-item-price">3,00€</div></div>
     </div>
   </div>
 
- <!-- HOUSE SPECIALS -->
-<div class="menu-section" id="tab-specials">
+</section>
 
-<div class="menu-category-title">👨‍🍳 House Specials</div>
+<!-- JavaScript for Tab Switching -->
+<script>
+function showMenu(evt, tabName) {
+  var sections = document.getElementsByClassName("menu-section");
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].style.display = "none";
+  }
 
-<div class="menu-items-grid">
+  var tabs = document.getElementsByClassName("menu-tab");
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
 
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">36. Garlic Chilli Chicken</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">37. Garlic Chilli King Prawn</div></div><div class="menu-item-price">15,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">38. Chicken Lababdar</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">39. Lamb Lababdar</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">40. Goan Chicken</div></div><div class="menu-item-price">13,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">41. Goan Lamb</div></div><div class="menu-item-price">14,50€</div></div>
-
-<div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">42. Goan King Prawn</div></div><div class="menu-item-price">15,50€</div></div>
-
-</div>
-</div>
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.classList.add("active");
+}
+</script>
 
 <!-- EXPERIENCE -->
 <section id="experience">
