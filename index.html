@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- Favicon -->
-<link rel="icon" href="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEMYm_p&_nc_oc=Adp_n0sc_7-Mv7F8FZC7F9zGnuQGdALt6nuIYdb4M-LzqRDn8ehIrYxDCrJq6nIC86HjFDSnygWSwC&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=qTFiSyjdk-Rn1MQ8fkusXQ&_nc_ss=7a32e&oh=00_Afwkq6LwWOGF2lHnrr6dbhK7Hi6jvAsh4cXGtWj6_PNKIQ&oe=69CDD85F" type="image/png" />
-<link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="icon" href="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEMYm_p&_nc_oc=Adp_n0sc_7-Mv7F8FZC7F9zGnuQGdALt6nuIYdb4M-LzqRDn8ehIrYxDCrJq6nIC86HjFDSnygWSwC&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=qTFiSyjdk-Rn1MQ8fkusXQ&_nc_ss=7a32e&oh=00_Afwkq6LwWOGF2lHnrr6dbhK7Hi6jvAsh4cXGtWj6_PNKIQ&oe=69CDD85F" type="image/png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gurkha Kitchen – Nepali & Indian Cuisine · Campoamor, Alicante</title>
@@ -12,8 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── THEME SYSTEM ── */
     :root {
       --bronze: #C49A5A;
       --bronze-light: #E8C589;
@@ -22,7 +18,6 @@
       --radius: 8px;
       --transition: 0.35s ease;
     }
-
     [data-theme="dark"] {
       --bg: #0F0C09;
       --bg-alt: #161210;
@@ -38,7 +33,6 @@
       --logo-color: #F5EDD8;
       --logo-accent: #C49A5A;
     }
-
     [data-theme="light"] {
       --bg: #FDFAF4;
       --bg-alt: #F5EDE0;
@@ -54,7 +48,6 @@
       --logo-color: #1C1410;
       --logo-accent: #9B2B2B;
     }
-
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Jost', sans-serif;
@@ -65,8 +58,6 @@
       overflow-x: hidden;
       transition: background var(--transition), color var(--transition);
     }
-
-    /* ── SCROLL ANIMATIONS ── */
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity .75s ease, transform .75s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-left { opacity: 0; transform: translateX(-45px); transition: opacity .75s ease, transform .75s ease; }
@@ -77,8 +68,6 @@
     .delay-2 { transition-delay: .2s !important; }
     .delay-3 { transition-delay: .3s !important; }
     .delay-4 { transition-delay: .4s !important; }
-
-    /* ── NAVIGATION ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
@@ -93,239 +82,90 @@
       box-shadow: 0 1px 0 var(--border);
       padding: .85rem 5vw;
     }
-
-    /* CIRCULAR LOGO */
-    .nav-logo {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none;
-    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img-wrap {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(196,154,90,0.6);
-      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+      border: 2px solid rgba(196,154,90,0.6); flex-shrink: 0;
       box-shadow: 0 0 0 0 rgba(196,154,90,0);
       transition: border-color .3s, box-shadow .3s, transform .3s;
     }
-    .nav-logo:hover .nav-logo-img-wrap {
-      border-color: var(--bronze);
-      box-shadow: 0 0 0 4px rgba(196,154,90,0.2);
-      transform: scale(1.05);
-    }
-    .nav-logo-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
-    .logo-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem; font-weight: 600;
-      color: #fff;
-      letter-spacing: 0.04em;
-      transition: color var(--transition);
-      line-height: 1;
-    }
+    .nav-logo:hover .nav-logo-img-wrap { border-color: var(--bronze); box-shadow: 0 0 0 4px rgba(196,154,90,0.2); transform: scale(1.05); }
+    .nav-logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: #fff; letter-spacing: 0.04em; transition: color var(--transition); line-height: 1; }
     .logo-text strong { color: var(--bronze); font-weight: 600; }
     nav.scrolled .logo-text { color: var(--logo-color); }
-
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: rgba(255,255,255,0.82);
-      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; transition: color .2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-      height: 1px; background: var(--bronze);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .3s;
-    }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color .2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--bronze); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
     .nav-links a:hover::after { transform: scaleX(1); }
     nav.scrolled .nav-links a { color: var(--text-secondary); }
     .nav-links a:hover { color: var(--bronze) !important; }
-
-    .nav-cta {
-      background: var(--red) !important; color: #fff !important;
-      padding: 0.55rem 1.4rem; border-radius: 30px;
-      transition: background .2s, transform .15s, box-shadow .2s !important;
-      letter-spacing: 0.06em !important;
-    }
+    .nav-cta { background: var(--red) !important; color: #fff !important; padding: 0.55rem 1.4rem; border-radius: 30px; transition: background .2s, transform .15s, box-shadow .2s !important; letter-spacing: 0.06em !important; }
     .nav-cta::after { display: none !important; }
     .nav-cta:hover { background: var(--red-hover) !important; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(155,43,43,0.4) !important; }
-
-    /* Theme Toggle */
-    .theme-toggle {
-      background: none; border: 1.5px solid rgba(255,255,255,0.25);
-      border-radius: 30px; cursor: pointer;
-      width: 52px; height: 28px; position: relative;
-      transition: border-color .3s, background .3s;
-      flex-shrink: 0;
-    }
+    .theme-toggle { background: none; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 30px; cursor: pointer; width: 52px; height: 28px; position: relative; transition: border-color .3s, background .3s; flex-shrink: 0; }
     nav.scrolled .theme-toggle { border-color: var(--border-strong); }
     .theme-toggle:hover { border-color: var(--bronze); }
-    .theme-toggle-knob {
-      position: absolute; top: 3px; left: 4px;
-      width: 20px; height: 20px; border-radius: 50%;
-      background: #fff;
-      transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .3s;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px;
-    }
+    .theme-toggle-knob { position: absolute; top: 3px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .3s; display: flex; align-items: center; justify-content: center; font-size: 11px; }
     [data-theme="light"] .theme-toggle-knob { transform: translateX(24px); background: var(--bronze); }
     [data-theme="light"] .theme-toggle { background: rgba(196,154,90,0.15); }
-
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 201; }
     .hamburger span { display: block; width: 24px; height: 2px; border-radius: 2px; background: rgba(255,255,255,0.85); transition: background .3s, transform .3s, opacity .3s; }
     nav.scrolled .hamburger span { background: var(--text-primary); }
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh; position: relative; overflow: hidden;
-      display: flex; align-items: center;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .hero-bg img {
-      width: 100%; height: 100%; object-fit: cover;
-      animation: heroZoom 14s ease-in-out infinite alternate;
-    }
+    #hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; animation: heroZoom 14s ease-in-out infinite alternate; }
     @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.07); } }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(135deg, rgba(10,7,4,0.88) 0%, rgba(10,7,4,0.55) 55%, rgba(155,43,43,0.25) 100%);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 150px 5vw 90px;
-      max-width: 720px;
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--bronze); margin-bottom: 2rem;
-      animation: fadeDown .8s .2s ease both;
-    }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(135deg, rgba(10,7,4,0.88) 0%, rgba(10,7,4,0.55) 55%, rgba(155,43,43,0.25) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 150px 5vw 90px; max-width: 720px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 12px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); margin-bottom: 2rem; animation: fadeDown .8s .2s ease both; }
     .hero-tag::before, .hero-tag::after { content: ''; display: block; width: 30px; height: 1px; background: var(--bronze); }
     @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeUp   { from { opacity: 0; transform: translateY(30px);  } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
-
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 7.5vw, 6rem);
-      line-height: 1.02; color: #fff; margin-bottom: 1.5rem;
-      animation: fadeUp .9s .35s ease both;
-      font-weight: 500;
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7.5vw, 6rem); line-height: 1.02; color: #fff; margin-bottom: 1.5rem; animation: fadeUp .9s .35s ease both; font-weight: 500; }
     h1 em { color: var(--bronze-light); font-style: italic; display: block; }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(255,255,255,0.68);
-      max-width: 480px; margin-bottom: 3rem; font-weight: 300; line-height: 1.85;
-      animation: fadeUp .9s .5s ease both;
-    }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.68); max-width: 480px; margin-bottom: 3rem; font-weight: 300; line-height: 1.85; animation: fadeUp .9s .5s ease both; }
     .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .9s .65s ease both; }
-    .btn-primary {
-      background: var(--red); color: #fff;
-      padding: 1rem 2.5rem; border-radius: 30px;
-      text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em;
-      transition: background .25s, transform .2s, box-shadow .25s;
-      box-shadow: 0 6px 28px rgba(155,43,43,0.45);
-      text-transform: uppercase;
-    }
+    .btn-primary { background: var(--red); color: #fff; padding: 1rem 2.5rem; border-radius: 30px; text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; transition: background .25s, transform .2s, box-shadow .25s; box-shadow: 0 6px 28px rgba(155,43,43,0.45); text-transform: uppercase; }
     .btn-primary:hover { background: var(--red-hover); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(155,43,43,0.5); }
-    .btn-outline {
-      border: 1.5px solid rgba(255,255,255,0.4); color: #fff;
-      padding: 1rem 2.5rem; border-radius: 30px;
-      text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em;
-      transition: border-color .25s, background .25s, transform .2s;
-      backdrop-filter: blur(6px);
-      text-transform: uppercase;
-    }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,0.4); color: #fff; padding: 1rem 2.5rem; border-radius: 30px; text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; transition: border-color .25s, background .25s, transform .2s; backdrop-filter: blur(6px); text-transform: uppercase; }
     .btn-outline:hover { border-color: var(--bronze); background: rgba(196,154,90,0.18); transform: translateY(-3px); }
-
-    .hero-stats {
-      display: flex; gap: 0; margin-top: 4.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      animation: fadeUp .9s .8s ease both;
-    }
+    .hero-stats { display: flex; gap: 0; margin-top: 4.5rem; border-top: 1px solid rgba(255,255,255,0.1); animation: fadeUp .9s .8s ease both; }
     .hero-stat { padding: 1.6rem 2.5rem 0.8rem 0; margin-right: 2.5rem; border-right: 1px solid rgba(255,255,255,0.08); }
     .hero-stat:last-child { border-right: none; }
     .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; color: var(--bronze); display: block; line-height: 1; }
     .stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; display: block; }
-
-    /* Floating badges */
-    .hero-badges {
-      position: absolute; right: 5vw; top: 50%; transform: translateY(-50%);
-      z-index: 2; display: flex; flex-direction: column; gap: 14px;
-      animation: fadeIn 1.2s 1.2s ease both;
-    }
-    .hero-badge-item {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px; padding: 14px 20px;
-      display: flex; align-items: center; gap: 14px;
-      color: #fff;
-      transition: background .3s, transform .3s, border-color .3s;
-      cursor: default;
-    }
+    .hero-badges { position: absolute; right: 5vw; top: 50%; transform: translateY(-50%); z-index: 2; display: flex; flex-direction: column; gap: 14px; animation: fadeIn 1.2s 1.2s ease both; }
+    .hero-badge-item { background: rgba(255,255,255,0.06); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; gap: 14px; color: #fff; transition: background .3s, transform .3s, border-color .3s; cursor: default; }
     .hero-badge-item:hover { background: rgba(196,154,90,0.22); transform: translateX(-8px); border-color: rgba(196,154,90,0.4); }
     .hero-badge-item .badge-emoji { font-size: 1.7rem; }
     .hero-badge-item .badge-text strong { display: block; font-size: 0.88rem; font-weight: 500; }
     .hero-badge-item .badge-text span { font-size: 0.72rem; color: rgba(255,255,255,0.5); }
-
-    .scroll-indicator {
-      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: rgba(255,255,255,0.4); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
-      animation: fadeIn 1s 1.5s ease both;
-    }
+    .scroll-indicator { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.4); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; animation: fadeIn 1s 1.5s ease both; }
     .scroll-dot { width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(196,154,90,0.6), transparent); animation: scrollPulse 2s ease-in-out infinite; }
     @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(.8)} 50%{opacity:1;transform:scaleY(1)} }
-
-    /* ── SHARED SECTION STYLES ── */
     section { padding: 110px 5vw; }
-    .section-tag {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--bronze);
-      display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
-    }
+    .section-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
     .section-tag::after { content: ''; flex: 0 0 30px; height: 1px; background: var(--bronze); }
     h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4.5vw, 3.5rem); line-height: 1.08; color: var(--text-primary); margin-bottom: 1rem; font-weight: 500; }
     h2 em { color: var(--red); font-style: italic; }
     .section-lead { font-size: 1rem; color: var(--text-secondary); max-width: 540px; font-weight: 300; margin-bottom: 3rem; line-height: 1.85; }
-
-    /* ── ABOUT ── */
     #about { background: var(--bg-alt); display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
     .about-img-wrap { position: relative; border-radius: 12px; overflow: hidden; }
     .about-img-main { width: 100%; display: block; transition: transform .7s ease; }
     .about-img-wrap:hover .about-img-main { transform: scale(1.04); }
-    .about-badge {
-      position: absolute; bottom: -24px; right: -24px;
-      background: var(--red); color: #fff;
-      border-radius: 50%; width: 116px; height: 116px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      box-shadow: 0 10px 35px rgba(155,43,43,0.45); text-align: center; padding: 12px;
-    }
+    .about-badge { position: absolute; bottom: -24px; right: -24px; background: var(--red); color: #fff; border-radius: 50%; width: 116px; height: 116px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; box-shadow: 0 10px 35px rgba(155,43,43,0.45); text-align: center; padding: 12px; }
     .about-badge strong { font-size: 1.15rem; line-height: 1.2; }
     .about-badge span { font-size: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; opacity: 0.8; }
     .about-feature { display: flex; gap: 18px; margin-bottom: 1.8rem; align-items: flex-start; }
-    .about-icon {
-      flex: 0 0 50px; height: 50px; background: var(--surface);
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; border: 1px solid var(--border);
-      transition: background .3s, transform .3s, border-color .3s;
-    }
+    .about-icon { flex: 0 0 50px; height: 50px; background: var(--surface); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; border: 1px solid var(--border); transition: background .3s, transform .3s, border-color .3s; }
     .about-feature:hover .about-icon { background: var(--bronze); transform: scale(1.08) rotate(8deg); border-color: var(--bronze); }
     .about-feature h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 5px; color: var(--text-primary); }
     .about-feature p { font-size: 0.86rem; color: var(--text-secondary); font-weight: 300; }
-
-    /* ── SHOWCASE ── */
     #showcase { background: #080604; padding: 0; overflow: hidden; }
     .showcase-header { padding: 90px 5vw 65px; text-align: center; }
     .showcase-header h2 { color: #F5EDD8; }
@@ -337,182 +177,39 @@
     .showcase-item:first-child { grid-row: 1 / 3; }
     .showcase-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease, filter .4s; filter: brightness(0.65) saturate(0.85); }
     .showcase-item:hover img { transform: scale(1.09); filter: brightness(0.82) saturate(1.15); }
-    .showcase-item-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2.2rem 1.5rem 1.4rem;
-      background: linear-gradient(to top, rgba(8,6,4,0.92) 0%, transparent 100%);
-      transform: translateY(8px); transition: transform .35s;
-    }
+    .showcase-item-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.2rem 1.5rem 1.4rem; background: linear-gradient(to top, rgba(8,6,4,0.92) 0%, transparent 100%); transform: translateY(8px); transition: transform .35s; }
     .showcase-item:hover .showcase-item-label { transform: translateY(0); }
     .showcase-item-label span { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); display: block; margin-bottom: 5px; }
     .showcase-item-label strong { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #fff; font-weight: 600; display: block; }
     .showcase-item-label em { font-size: 0.77rem; color: rgba(255,255,255,0.48); font-style: normal; }
 
     /* ── MENU ── */
-   #menu {
-  background: var(--bg);
-}
+    #menu { background: var(--bg); }
+    .menu-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; justify-content: flex-start; }
+    .menu-tab { padding: 0.55rem 1.5rem; border-radius: 30px; font-size: 0.85rem; font-weight: 500; cursor: pointer; border: 1.5px solid var(--border-strong); background: transparent; color: var(--text-secondary); transition: all 0.25s ease; letter-spacing: 0.05em; font-family: 'Jost', sans-serif; white-space: nowrap; }
+    .menu-tab:hover { border-color: var(--bronze); color: var(--bronze); }
+    .menu-tab.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .menu-section { display: none; }
+    .menu-section.active { display: block; animation: fadeInMenu 0.4s ease forwards; }
+    @keyframes fadeInMenu { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .menu-category-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 2.2rem 0 0.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .menu-category-title:first-child { margin-top: 0; }
+    .menu-subcategory { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--bronze); margin: 1.8rem 0 0.6rem; padding-left: 4px; border-left: 3px solid var(--bronze); padding-left: 10px; }
+    .menu-category-sub { font-size: 0.84rem; color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-style: italic; }
+    .menu-items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+    .menu-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 18px; background: var(--bg-card); border-radius: var(--radius); gap: 14px; border: 1px solid var(--border); transition: all 0.25s ease; }
+    .menu-item:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196, 154, 90, 0.08); }
+    .menu-item-left { flex: 1; }
+    .menu-item-name { font-size: 0.92rem; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .menu-item-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 300; line-height: 1.45; }
+    .menu-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; font-weight: 600; color: var(--bronze); white-space: nowrap; flex-shrink: 0; margin-left: 10px; }
 
-.menu-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 2.5rem;
-  justify-content: flex-start;
-}
-
-.menu-tab {
-  padding: 0.55rem 1.5rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: 1.5px solid var(--border-strong);
-  background: transparent;
-  color: var(--text-secondary);
-  transition: all 0.25s ease;
-  letter-spacing: 0.05em;
-  font-family: 'Jost', sans-serif;
-  white-space: nowrap;
-}
-
-.menu-tab:hover {
-  border-color: var(--bronze);
-  color: var(--bronze);
-}
-
-.menu-tab.active {
-  background: var(--red);
-  border-color: var(--red);
-  color: #fff;
-}
-
-/* Menu Sections */
-.menu-section {
-  display: none;
-  animation: fadeInMenu 0.4s ease forwards;
-}
-
-.menu-section.active {
-  display: block;
-}
-
-@keyframes fadeInMenu {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Rest of your CSS (unchanged but cleaned) */
-.menu-category-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 2.2rem 0 0.5rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.cat-icon {
-  font-size: 1.2rem;
-}
-
-.menu-category-sub {
-  font-size: 0.84rem;
-  color: var(--text-muted);
-  font-weight: 300;
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-
-.menu-items-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 12px;
-  margin-bottom: 2rem;
-}
-
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 14px 18px;
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  gap: 14px;
-  border: 1px solid var(--border);
-  transition: all 0.25s ease;
-}
-
-.menu-item:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(196, 154, 90, 0.08);
-}
-
-.menu-item-left {
-  flex: 1;
-}
-
-.menu-item-name {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.menu-item-desc {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 300;
-  line-height: 1.45;
-}
-
-.menu-item-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.18rem;
-  font-weight: 600;
-  color: var(--bronze);
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-left: 10px;
-}
-
-/* Mobile responsiveness for tabs */
-@media (max-width: 768px) {
-  .menu-tabs {
-    gap: 8px;
-  }
-  
-  .menu-tab {
-    padding: 0.5rem 1.1rem;
-    font-size: 0.8rem;
-  }
-  
-  .menu-items-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-}
     /* ── EXPERIENCE ── */
     #experience { background: #080604; padding: 0; display: block; }
     .exp-hero { position: relative; height: 520px; overflow: hidden; }
     .exp-hero img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); transform: scale(1.05); transition: transform 8s ease; }
     #experience:hover .exp-hero img { transform: scale(1); }
-    .exp-hero-overlay {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem;
-    }
+    .exp-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
     .exp-hero-overlay .section-tag { justify-content: center; }
     .exp-hero-overlay .section-tag::after { display: none; }
     .exp-hero-overlay h2 { color: #F5EDD8; font-size: clamp(2.5rem, 5.5vw, 4.5rem); margin-bottom: 1rem; }
@@ -521,20 +218,12 @@
     .photo-item { position: relative; overflow: hidden; cursor: pointer; }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .65s ease, filter .4s; filter: brightness(0.6) saturate(0.8); }
     .photo-item:hover img { transform: scale(1.08); filter: brightness(0.85) saturate(1.2); }
-    .photo-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2.2rem 1.5rem 1.4rem;
-      background: linear-gradient(to top, rgba(8,6,4,0.94) 0%, transparent 100%);
-      transform: translateY(6px); transition: transform .35s;
-    }
+    .photo-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.2rem 1.5rem 1.4rem; background: linear-gradient(to top, rgba(8,6,4,0.94) 0%, transparent 100%); transform: translateY(6px); transition: transform .35s; }
     .photo-item:hover .photo-label { transform: translateY(0); }
     .photo-label span { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); display: block; margin-bottom: 5px; }
     .photo-label strong { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #fff; font-weight: 600; display: block; }
     .exp-features { display: grid; grid-template-columns: repeat(4,1fr); }
-    .exp-feature-card {
-      padding: 2.6rem 2rem; border-right: 1px solid rgba(255,255,255,0.05);
-      transition: background .35s; position: relative; overflow: hidden;
-    }
+    .exp-feature-card { padding: 2.6rem 2rem; border-right: 1px solid rgba(255,255,255,0.05); transition: background .35s; position: relative; overflow: hidden; }
     .exp-feature-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--bronze), transparent); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
     .exp-feature-card:hover::before { transform: scaleX(1); }
     .exp-feature-card:last-child { border-right: none; }
@@ -543,10 +232,6 @@
     .exp-feature-card:hover .exp-feature-icon { transform: scale(1.2) rotate(-5deg); }
     .exp-feature-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: #F5EDD8; margin-bottom: 0.65rem; }
     .exp-feature-card p { font-size: 0.83rem; color: rgba(245,237,216,0.4); font-weight: 300; line-height: 1.65; }
-
-
-
-    /* ── RESERVATION ── */
     #reservation { background: var(--bg); }
     .res-wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 90px; align-items: start; }
     .res-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--text-primary); margin-bottom: 0.4rem; font-weight: 600; margin-top: 2rem; }
@@ -555,40 +240,22 @@
     .contact-line { display: flex; gap: 14px; align-items: center; font-size: 0.9rem; color: var(--text-secondary); margin: 0.65rem 0; }
     .contact-line a { color: var(--text-secondary); text-decoration: none; font-weight: 600; transition: color .2s; }
     .contact-line a:hover { color: var(--red); }
-    .form-card {
-      background: var(--bg-card); border-radius: 16px; padding: 3rem;
-      box-shadow: 0 12px 60px rgba(0,0,0,0.3); border: 1px solid var(--border);
-      transition: box-shadow .3s;
-    }
+    .form-card { background: var(--bg-card); border-radius: 16px; padding: 3rem; box-shadow: 0 12px 60px rgba(0,0,0,0.3); border: 1px solid var(--border); transition: box-shadow .3s; }
     .form-card:hover { box-shadow: 0 20px 80px rgba(0,0,0,0.35); }
     .form-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--text-primary); margin-bottom: 2rem; font-weight: 600; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
     .form-group label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-muted); }
-    .form-group input, .form-group select, .form-group textarea {
-      background: var(--bg-elevated); border: 1.5px solid var(--border);
-      border-radius: var(--radius); padding: 0.85rem 1.1rem;
-      font-family: 'Jost', sans-serif; font-size: 0.93rem; color: var(--text-primary);
-      outline: none; transition: border-color .25s, box-shadow .25s; width: 100%;
-    }
+    .form-group input, .form-group select, .form-group textarea { background: var(--bg-elevated); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1.1rem; font-family: 'Jost', sans-serif; font-size: 0.93rem; color: var(--text-primary); outline: none; transition: border-color .25s, box-shadow .25s; width: 100%; }
     .form-group select { color: var(--text-primary); }
     .form-group select option { background: var(--bg-card); }
     .form-group input::placeholder { color: var(--text-muted); }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--bronze); box-shadow: 0 0 0 4px rgba(196,154,90,0.12); }
     .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-submit {
-      background: var(--red); color: #fff; border: none;
-      border-radius: 30px; padding: 1.15rem 2rem; width: 100%;
-      font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 600;
-      cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase;
-      transition: background .25s, transform .2s, box-shadow .25s;
-      box-shadow: 0 6px 24px rgba(155,43,43,0.35);
-    }
+    .form-submit { background: var(--red); color: #fff; border: none; border-radius: 30px; padding: 1.15rem 2rem; width: 100%; font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: background .25s, transform .2s, box-shadow .25s; box-shadow: 0 6px 24px rgba(155,43,43,0.35); }
     .form-submit:hover { background: var(--red-hover); transform: translateY(-2px); box-shadow: 0 12px 35px rgba(155,43,43,0.45); }
     .form-note { text-align: center; margin-top: 14px; font-size: 0.77rem; color: var(--text-muted); }
     .success-msg { display: none; background: rgba(46,125,50,0.1); border: 1px solid rgba(76,175,80,0.3); border-radius: var(--radius); padding: 1.5rem; text-align: center; color: #4caf50; font-size: 0.92rem; margin-top: 1rem; line-height: 1.75; }
-
-    /* ── LOCATION ── */
     #location { background: var(--bg-alt); }
     .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; }
     .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
@@ -599,8 +266,6 @@
     .hours-table td:first-child { color: var(--text-muted); }
     .map-embed { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); height: 400px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
     .map-embed iframe { width: 100%; height: 100%; border: none; display: block; }
-
-    /* ── FOOTER ── */
     footer { background: #060503; color: rgba(245,237,216,0.5); padding: 80px 5vw 44px; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 56px; }
     .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: #F5EDD8; margin-bottom: 1rem; }
@@ -614,30 +279,14 @@
     .footer-divider { height: 1px; background: rgba(245,237,216,0.06); margin-bottom: 28px; }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-size: 0.8rem; }
     .social-links { display: flex; gap: 22px; }
-    .social-links a {
-      color: rgba(245,237,216,0.4); text-decoration: none; font-size: 0.83rem;
-      transition: color .2s, transform .2s; display: inline-block;
-    }
+    .social-links a { color: rgba(245,237,216,0.4); text-decoration: none; font-size: 0.83rem; transition: color .2s, transform .2s; display: inline-block; }
     .social-links a:hover { color: var(--bronze); transform: translateY(-2px); }
-
-    /* ── MOBILE ── */
-    @media (max-width: 1024px) {
-      .testimonials-grid { grid-template-columns: 1fr 1fr; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-    }
+    @media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 900px) {
       #about, .res-wrap, .location-grid { grid-template-columns: 1fr; gap: 48px; }
       .hero-badges { display: none; }
       nav .nav-links { display: none; }
-      nav .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; inset: 0 0 0 35%;
-        background: var(--bg-card); padding: 90px 2.5rem 2.5rem;
-        gap: 2.2rem; z-index: 199;
-        box-shadow: -4px 0 40px rgba(0,0,0,0.35);
-        animation: slideIn .28s ease;
-        border-left: 1px solid var(--border);
-      }
+      nav .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0 0 0 35%; background: var(--bg-card); padding: 90px 2.5rem 2.5rem; gap: 2.2rem; z-index: 199; box-shadow: -4px 0 40px rgba(0,0,0,0.35); animation: slideIn .28s ease; border-left: 1px solid var(--border); }
       .nav-links.open a { color: var(--text-primary) !important; font-size: 1rem !important; letter-spacing: 0.06em !important; }
       @keyframes slideIn { from{transform:translateX(100%)} to{transform:translateX(0)} }
       .hamburger { display: flex; }
@@ -648,7 +297,7 @@
       .exp-features { grid-template-columns: 1fr 1fr; }
       .showcase-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 230px 230px; }
       .showcase-item:first-child { grid-row: auto; grid-column: 1/-1; }
-      .testimonials-grid { grid-template-columns: 1fr; }
+      .menu-items-grid { grid-template-columns: 1fr; gap: 10px; }
     }
     @media (max-width: 600px) {
       .footer-top { grid-template-columns: 1fr; }
@@ -663,6 +312,7 @@
       .showcase-item { height: 230px; }
       .showcase-item:first-child { grid-column: auto; }
       .form-card { padding: 2rem; }
+      .menu-tab { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -672,7 +322,7 @@
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
     <div class="nav-logo-img-wrap">
-      <img src="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEu4KnO&_nc_oc=AdpPsNftMIlA6GYv5_CYqEo9Gq70_Bu3R8nIp4j6qv60Q1XoWhCOzowse6flvaVlUDVunhJJQnlrxpwFOb1UKwfG&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=34IEoqv8jxFSVg6Ioe4nUg&_nc_ss=7a32e&oh=00_Afxx6D_XLwraJ1j12RjDbXOrBZdIuHBAbOt0aX1tfURY9g&oe=69CDA01F" alt="Gurkha Kitchen Logo" />
+      <img src="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEMYm_p&_nc_oc=Adp_n0sc_7-Mv7F8FZC7F9zGnuQGdALt6nuIYdb4M-LzqRDn8ehIrYxDCrJq6nIC86HjFDSnygWSwC&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=qTFiSyjdk-Rn1MQ8fkusXQ&_nc_ss=7a32e&oh=00_Afwkq6LwWOGF2lHnrr6dbhK7Hi6jvAsh4cXGtWj6_PNKIQ&oe=69CDD85F" alt="Gurkha Kitchen Logo" />
     </div>
     <span class="logo-text">Gurkha <strong>Kitchen</strong></span>
   </a>
@@ -779,7 +429,8 @@
     </div>
   </div>
 </section>
-<!-- MENU SECTION -->
+
+<!-- MENU SECTION — clean single definition, no duplicates -->
 <section id="menu">
   <div class="reveal">
     <div class="section-tag">Our Menu</div>
@@ -787,36 +438,28 @@
     <p class="section-lead">Browse our full menu — from light starters to hearty mains. Available for dine-in and takeaway.</p>
   </div>
 
-  <!-- Menu Tabs -->
   <div class="menu-tabs reveal">
-    <button class="menu-tab active" onclick="showMenu(event, 'tab-starters')">Starters</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-soup')">Soup</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-salad')">Salad</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-tandoori')">Tandoori Sizzlers</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-specials')">House Specials</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-popular')">Popular Dishes</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-mains')">Main Courses</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-vegetarian')">Vegetarian</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-biryani')">Biryani & Rice</button>
-    <button class="menu-tab" onclick="showMenu(event, 'tab-bread')">Bread</button>
+    <button class="menu-tab active" data-target="tab-starters">Starters</button>
+    <button class="menu-tab" data-target="tab-soup">Soup</button>
+    <button class="menu-tab" data-target="tab-salad">Salad</button>
+    <button class="menu-tab" data-target="tab-tandoori">Tandoori Sizzlers</button>
+    <button class="menu-tab" data-target="tab-specials">House Specials</button>
+    <button class="menu-tab" data-target="tab-popular">Popular Dishes</button>
+    <button class="menu-tab" data-target="tab-mains">Main Courses</button>
+    <button class="menu-tab" data-target="tab-vegetarian">Vegetarian</button>
+    <button class="menu-tab" data-target="tab-biryani">Biryani &amp; Rice</button>
+    <button class="menu-tab" data-target="tab-bread">Bread</button>
   </div>
 
   <!-- STARTERS -->
   <div class="menu-section active" id="tab-starters">
     <div class="menu-category-title">🫓 Appetizer</div>
     <div class="menu-items-grid">
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <div class="menu-item-name">1. Papadom</div>
-          <div class="menu-item-desc">Crispy lentil crackers</div>
-        </div>
-        <div class="menu-item-price">1,50€</div>
-      </div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">1. Papadom</div><div class="menu-item-desc">Crispy lentil crackers</div></div><div class="menu-item-price">1,50€</div></div>
     </div>
-
     <div class="menu-category-title">🥟 Starters</div>
     <div class="menu-items-grid">
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">8. Onion Bhaji</div><div class="menu-item-desc">Ceblla rebozada con harina de garbanzos y frita</div></div><div class="menu-item-price">5,00€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">8. Onion Bhaji</div><div class="menu-item-desc">Cebolla rebozada con harina de garbanzos y frita</div></div><div class="menu-item-price">5,00€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">9. Veg Pakora</div><div class="menu-item-desc">Verduras de temporada fritas en puré con harina de gramo y especias</div></div><div class="menu-item-price">5,00€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">10. Paneer Pakora</div><div class="menu-item-desc">Tempura de queso casero con especias de harina de garbanzos y frito</div></div><div class="menu-item-price">6,00€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">11. Chicken Pakora</div><div class="menu-item-desc">Pollo rebozado con especias de harina de garbanzos</div></div><div class="menu-item-price">5,00€</div></div>
@@ -858,12 +501,12 @@
     <div class="menu-category-title">🔥 Tandoori Sizzlers</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">22. Tandoori Chicken</div><div class="menu-item-desc">Muslo de pollo marinado con especias, hierbas al horno tandoori</div></div><div class="menu-item-price">11,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">23. Paneer Tikka Shashlik</div><div class="menu-item-desc">Queso casero marinado con yogur, jengibre, ajo y hierbas nepalesas y con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">15,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">23. Paneer Tikka Shashlik</div><div class="menu-item-desc">Queso casero marinado con yogur, jengibre, ajo y hierbas nepalesas con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">15,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">24. Chicken Tikka Shashlik</div><div class="menu-item-desc">Asado con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">25. Lamb Tikka Shashlik</div><div class="menu-item-desc">Asado con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">26. King Prawn Shashlik</div><div class="menu-item-desc">Langostinos asados con cebolla, tomate y pimientos mixtos</div></div><div class="menu-item-price">16,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">27. Chicken Malai Tikka</div><div class="menu-item-desc">Pechuga de pollo marinada con anacardos, queso, cardamomo y especias</div></div><div class="menu-item-price">13,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">28. Chicken Pahadi Tikka</div><div class="menu-item-desc">Marinado con especias nepales y chiles verdes</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">28. Chicken Pahadi Tikka</div><div class="menu-item-desc">Marinado con especias nepalesas y chiles verdes</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">29. Tandoori Salmon</div><div class="menu-item-desc">Marinado con pasta de ajo y jengibre con limón fresco y hierbas nepalesas</div></div><div class="menu-item-price">17,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">30. Tandoori King Prawns</div><div class="menu-item-desc">Marinados con jengibre, ajo, limón, hierbas y especias</div></div><div class="menu-item-price">15,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">31. Chicken Sekuwa</div><div class="menu-item-desc">Marinado con yogur, jengibre, ajo y hierbas nepalesas, al horno tandoori</div></div><div class="menu-item-price">13,50€</div></div>
@@ -878,10 +521,10 @@
   <div class="menu-section" id="tab-specials">
     <div class="menu-category-title">👨‍🍳 House Specials</div>
     <div class="menu-items-grid">
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">36. Garlic Chilli Chicken</div><div class="menu-item-desc">Pollo cocinado con pimentos, cebolla, ajo, chile verde y especias de las Himalayas</div></div><div class="menu-item-price">13,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">37. Garlic Chilli King Prawn</div><div class="menu-item-desc">Langostinos cocinado con pimentos, cebolla, ajo, chile verde y especias de las Himalayas</div></div><div class="menu-item-price">15,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">38. Chicken Lababdar</div><div class="menu-item-desc">Cocinados en una salsa exótica con pimientos, cebolla y nata fresca con un sabor de fenogreco</div></div><div class="menu-item-price">13,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">39. Lamb Lababdar</div><div class="menu-item-desc">Cocinados en una salsa exótica con pimientos, cebolla y nata fresca con un sabor de fenogreco</div></div><div class="menu-item-price">14,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">36. Garlic Chilli Chicken</div><div class="menu-item-desc">Pollo cocinado con pimientos, cebolla, ajo, chile verde y especias de las Himalayas</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">37. Garlic Chilli King Prawn</div><div class="menu-item-desc">Langostinos cocinados con pimientos, cebolla, ajo, chile verde y especias de las Himalayas</div></div><div class="menu-item-price">15,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">38. Chicken Lababdar</div><div class="menu-item-desc">Cocinado en una salsa exótica con pimientos, cebolla y nata fresca con sabor de fenogreco</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">39. Lamb Lababdar</div><div class="menu-item-desc">Cocinado en una salsa exótica con pimientos, cebolla y nata fresca con sabor de fenogreco</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">40. Goan Chicken</div><div class="menu-item-desc">Pollo cocinado con cebolla, hojas de curry, especias y leche de coco</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">41. Goan Lamb</div><div class="menu-item-desc">Cordero cocinado con cebolla, hojas de curry, especias y leche de coco</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">42. Goan King Prawn</div><div class="menu-item-desc">Langostinos cocinados con cebolla, hojas de curry, especias y leche de coco</div></div><div class="menu-item-price">15,50€</div></div>
@@ -893,7 +536,7 @@
     <div class="menu-category-title">⭐ Popular Dishes</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">43. Butter Chicken</div><div class="menu-item-desc">Pollo en salsa cremosa de mantequilla, almendras, tomate y varias especias</div></div><div class="menu-item-price">13,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">44. Mango Chicken</div><div class="menu-item-desc">Cocinado con salsa de mango cremosa, salsa y especias suaves</div></div><div class="menu-item-price">13,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">44. Mango Chicken</div><div class="menu-item-desc">Cocinado con salsa de mango cremosa y especias suaves</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">45. Rato Bhale Chicken</div><div class="menu-item-desc">Plato tradicional nepali preparado con polvo de anacardo, nata y pimiento</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">46. Chicken Tikka Timuri</div><div class="menu-item-desc">Plato especial de las Himalayas preparado con hierbas especiales de la montaña</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">47. Rara Lamb</div><div class="menu-item-desc">Cordero cocinado con carne picada y hierbas</div></div><div class="menu-item-price">14,50€</div></div>
@@ -902,43 +545,37 @@
 
   <!-- MAIN COURSES -->
   <div class="menu-section" id="tab-mains">
-    <div class="menu-category-title">Main Courses</div>
-
+    <div class="menu-category-title">🍽️ Main Courses</div>
     <div class="menu-subcategory">Tikka Masala</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">48. Chicken Tikka Masala</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">49. Lamb Tikka Masala</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">50. King Prawn Tikka Masala</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-
     <div class="menu-subcategory">Korma</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">51. Chicken Korma</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">52. Lamb Korma</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">53. King Prawn Korma</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-
     <div class="menu-subcategory">Curry</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">54. Chicken Curry</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">55. Lamb Curry</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">56. King Prawn Curry</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-
     <div class="menu-subcategory">Madras</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">57. Chicken Madras</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">58. Lamb Madras</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">59. King Prawn Madras</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-
     <div class="menu-subcategory">Kadai</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">60. Chicken Kadai</div></div><div class="menu-item-price">13,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">61. Lamb Kadai</div></div><div class="menu-item-price">14,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">62. King Prawn Kadai</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-
     <div class="menu-subcategory">Balti</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">63. Chicken Balti</div></div><div class="menu-item-price">13,50€</div></div>
@@ -953,11 +590,11 @@
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">66. Aloo Gobi</div><div class="menu-item-desc">Coliflor con patatas, cocinado con especias</div></div><div class="menu-item-price">9,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">67. Saag Aloo</div><div class="menu-item-desc">Espinaca con patata cocida con cebolla y tomate</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">68. Mustang Aloo</div><div class="menu-item-desc">Patatas cocinados con comino y especias nepalesas</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">68. Mustang Aloo</div><div class="menu-item-desc">Patatas cocinadas con comino y especias nepalesas</div></div><div class="menu-item-price">9,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">69. Chana Masala</div><div class="menu-item-desc">Garbanzos cocinados con tomate, cebolla con salsa y especias</div></div><div class="menu-item-price">9,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">70. Tadka Dal</div><div class="menu-item-desc">Guiso de lentejas</div></div><div class="menu-item-price">9,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">71. Mutter Mushrooms</div><div class="menu-item-desc">Guisantes con queso casero cocidos en salsa cremosa suave</div></div><div class="menu-item-price">9,50€</div></div>
-      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">72. Baigan Achari</div><div class="menu-item-desc">Berenjena cocinados con tomate, cebolla con salsa y especias de las Himalayas</div></div><div class="menu-item-price">9,50€</div></div>
+      <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">72. Baigan Achari</div><div class="menu-item-desc">Berenjena cocinada con tomate, cebolla con salsa y especias de las Himalayas</div></div><div class="menu-item-price">9,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">73. Mixed Vegetables</div><div class="menu-item-desc">Verduras mixtas con salsa de curry y especias</div></div><div class="menu-item-price">9,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">74. Palak Paneer</div><div class="menu-item-desc">Queso casero cocinado con espinacas y especias</div></div><div class="menu-item-price">11,50€</div></div>
     </div>
@@ -974,7 +611,6 @@
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">78. King Prawn Biryani</div></div><div class="menu-item-price">16,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">79. Special Biryani</div><div class="menu-item-desc">Combination of chicken, lamb and king prawns</div></div><div class="menu-item-price">15,50€</div></div>
     </div>
-
     <div class="menu-category-title">🌾 Rice</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">80. Basmati</div></div><div class="menu-item-price">3,50€</div></div>
@@ -989,7 +625,7 @@
 
   <!-- BREAD -->
   <div class="menu-section" id="tab-bread">
-    <div class="menu-category-title">🫓 Naan & Bread</div>
+    <div class="menu-category-title">🫓 Naan &amp; Bread</div>
     <div class="menu-items-grid">
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">87. Normal Naan</div></div><div class="menu-item-price">3,50€</div></div>
       <div class="menu-item"><div class="menu-item-left"><div class="menu-item-name">88. Garlic Naan</div></div><div class="menu-item-price">4,00€</div></div>
@@ -1003,24 +639,6 @@
   </div>
 
 </section>
-
-<!-- JavaScript for Tab Switching -->
-<script>
-function showMenu(evt, tabName) {
-  var sections = document.getElementsByClassName("menu-section");
-  for (var i = 0; i < sections.length; i++) {
-    sections[i].style.display = "none";
-  }
-
-  var tabs = document.getElementsByClassName("menu-tab");
-  for (var i = 0; i < tabs.length; i++) {
-    tabs[i].classList.remove("active");
-  }
-
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.classList.add("active");
-}
-</script>
 
 <!-- EXPERIENCE -->
 <section id="experience">
@@ -1054,8 +672,6 @@ function showMenu(evt, tabName) {
   </div>
 </section>
 
-
-
 <!-- RESERVATION -->
 <section id="reservation">
   <div class="res-wrap">
@@ -1072,7 +688,7 @@ function showMenu(evt, tabName) {
       <h3>Address</h3>
       <p>Rda. Ramon de Campoamor, 3<br /> Dehesa De Campoamor, 03189 Orihuela Costa<br />Alicante, Spain</p>
       <h3>Opening Hours</h3>
-      <p>Monday – Sunday: 12:00 – 23:00<br />
+      <p>Monday – Sunday: 12:00 – 23:00</p>
     </div>
     <div class="form-card reveal-right">
       <h3>Make a Reservation</h3>
@@ -1136,7 +752,6 @@ function showMenu(evt, tabName) {
         <a href="tel:+34623625993"><strong>623 625 993</strong></a>
       </div>
       <table class="hours-table">
-
         <tr><td>Monday – Sunday</td><td>12:00 – 23:00</td></tr>
       </table>
       <a href="#reservation" class="btn-primary" style="display:inline-block;margin-top:2.5rem;">Book a Table</a>
@@ -1213,10 +828,8 @@ function showMenu(evt, tabName) {
     themeKnob.textContent = t === 'dark' ? '☀️' : '🌙';
     themeKnobMobile.textContent = t === 'dark' ? '☀️' : '🌙';
   }
-
   const saved = localStorage.getItem('gk-theme') || 'dark';
   setTheme(saved);
-
   themeToggle.addEventListener('click', () => setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
   themeToggleMobile.addEventListener('click', () => setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
 
@@ -1227,25 +840,26 @@ function showMenu(evt, tabName) {
   /* ── MOBILE MENU ── */
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    hamburger.classList.toggle('open');
-  });
-
+  hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); hamburger.classList.toggle('open'); });
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('open');
-    });
+    a.addEventListener('click', () => { navLinks.classList.remove('open'); hamburger.classList.remove('open'); });
   });
-
-  /* Show mobile theme toggle when hamburger visible */
-  function checkMobile() {
-    themeToggleMobile.style.display = window.innerWidth <= 900 ? 'block' : 'none';
-  }
+  function checkMobile() { themeToggleMobile.style.display = window.innerWidth <= 900 ? 'block' : 'none'; }
   checkMobile();
   window.addEventListener('resize', checkMobile);
+
+  /* ── MENU TABS ── */
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      // Remove active from all tabs and sections
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+      // Activate clicked tab and its target section
+      this.classList.add('active');
+      const target = document.getElementById(this.dataset.target);
+      if (target) target.classList.add('active');
+    });
+  });
 
   /* ── DATE MIN ── */
   document.addEventListener('DOMContentLoaded', () => {
@@ -1253,24 +867,12 @@ function showMenu(evt, tabName) {
     if (d) d.min = new Date().toISOString().split('T')[0];
   });
 
-  /* ── MENU TABS ── */
-  function showMenu(e, tab) {
-    document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    e.target.classList.add('active');
-  }
-
   /* ── SCROLL REVEAL ── */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
   /* ── FORM ── */
@@ -1292,9 +894,7 @@ function showMenu(evt, tabName) {
         form.style.display = 'none';
         successMsg.style.display = 'block';
         successMsg.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        throw new Error('Error');
-      }
+      } else { throw new Error('Error'); }
     })
     .catch(() => {
       btn.textContent = 'Confirm Reservation →';
