@@ -7,6 +7,8 @@
   <meta name="description" content="Authentic Nepali & Indian cuisine in Campoamor, Orihuela Costa, Alicante. Momo, Tandoori, Biryani and more. Book your table or order takeaway. Tel: 623 625 993." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Favicon: inline SVG logo -->
+   <link rel="icon" type="image/png" href="images/publicfavicon.png.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -54,7 +56,53 @@
     }
     nav.scrolled .nav-logo { color: var(--red); }
     .nav-logo span { color: rgba(255,255,255,0.7); transition: color .4s; }
-    nav.scrolled .nav-logo span { color: var(--bronze); }
+    nav.scrolled .nav-logo-img {
+  filter: brightness(0.9) contrast(1.1);
+}
+    /* ── NAV LOGO IMAGE ── */
+.nav-logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  padding: 4px;
+}
+
+.nav-logo-img:hover {
+  transform: scale(1.08);
+}
+
+/* When navbar scrolls */
+nav.scrolled .nav-logo-img {
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.03em;
+  transition: color .4s;
+}
+
+.logo-text strong {
+  color: var(--bronze);
+  font-weight: 600;
+}
+
+nav.scrolled .logo-text {
+  color: var(--red);
+}
+nav.scrolled {
+  border-bottom: 1px solid rgba(184,131,74,0.15);
+}
+nav.scrolled .logo-text strong {
+  color: var(--bronze);
+}
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       text-decoration: none; color: rgba(255,255,255,0.85);
@@ -230,7 +278,6 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       font-family: 'Cormorant Garamond', serif;
       box-shadow: 0 8px 30px rgba(155,43,43,0.4); text-align: center; padding: 12px;
-      animation: spin-badge 0s; /* static but pops on scroll */
     }
     .about-badge strong { font-size: 1.2rem; line-height: 1.2; }
     .about-badge span { font-size: 0.55rem; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
@@ -245,7 +292,7 @@
     .about-feature h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 4px; color: var(--dark); }
     .about-feature p { font-size: 0.87rem; color: var(--light-txt); font-weight: 300; }
 
-    /* ── FOOD SHOWCASE (new!) ── */
+    /* ── FOOD SHOWCASE ── */
     #showcase {
       background: var(--dark); padding: 0;
       overflow: hidden;
@@ -455,19 +502,6 @@
       color: #2d7a4f; font-size: 0.92rem; margin-top: 1rem; line-height: 1.7;
     }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--white); }
-    .testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 3rem; }
-    .testi-card {
-      background: var(--cream); border-radius: 10px; padding: 2rem;
-      border: 1px solid rgba(184,131,74,0.1);
-      transition: transform .3s, box-shadow .3s, border-color .3s;
-    }
-    .testi-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(28,20,16,0.1); border-color: rgba(184,131,74,0.3); }
-    .stars { color: var(--bronze); font-size: 0.95rem; margin-bottom: 1rem; letter-spacing: 3px; }
-    .testi-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--mid); line-height: 1.75; margin-bottom: 1.4rem; font-style: italic; }
-    .testi-author { font-size: 0.83rem; font-weight: 500; color: var(--dark); }
-    .testi-origin { font-size: 0.76rem; color: var(--light-txt); }
 
     /* ── LOCATION ── */
     #location { background: var(--cream); }
@@ -544,20 +578,15 @@
 <body>
 
 <!-- NAVIGATION -->
-<nav id="navbar">
+<nav id="navbar"> 
   <a href="#hero" class="nav-logo">
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
-      <path d="M5 24 L16 6 L27 24" stroke="#E8A96A" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-      <path d="M9 24 L16 10 L23 24" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-      <line x1="3" y1="26" x2="29" y2="26" stroke="#E8A96A" stroke-width="1.5"/>
-    </svg>
-    Gurkha <span>Kitchen</span>
-  </a>
+  <img src="images/publicfavicon.png.png" alt="Gurkha Kitchen Logo" class="nav-logo-img">
+  <span class="logo-text">Gurkha <strong>Kitchen</strong></span>
+</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#location">Find Us</a></li>
     <li><a href="#reservation" class="nav-cta">Reserve a Table</a></li>
   </ul>
@@ -936,7 +965,7 @@
         </div>
         <div class="form-group"><label>Special Requests</label><textarea name="special_requests" placeholder="Allergies, dietary requirements, celebrations, high chair needed..." rows="3"></textarea></div>
         <button type="submit" class="form-submit">Confirm Reservation →</button>
-        <p class="form-note">We will confirm your booking by phone or WhatsApp within 2 hours.</p>
+        <p class="form-note">We will confirm your booking by phone or WhatsApp within an hour.</p>
       </form>
       <div class="success-msg" id="successMsg">
         🙏 Namaste! Your reservation request has been received.<br />
@@ -944,22 +973,6 @@
         We look forward to welcoming you at Gurkha Kitchen!
       </div>
     </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="reveal">
-    <div class="section-tag">Guest Reviews</div>
-    <h2>What Our Guests <em>Say</em></h2>
-  </div>
-  <div class="testi-grid">
-    <div class="testi-card reveal delay-1"><div class="stars">★★★★★</div><p class="testi-text">"Absolutely the best meal we had in Alicante. The Mo:Mo dumplings and Mixed Grill were incredible and the staff treated us like family. Back every time we visit!"</p><div class="testi-author">Alisha Thapa</div><div class="testi-origin">London, United Kingdom</div></div>
-    <div class="testi-card reveal delay-2"><div class="stars">★★★★★</div><p class="testi-text">"Una experiencia gastronómica única en Campoamor. El Biryani y el Tikka Masala son espectaculares. Totalmente recomendado a turistas y locales por igual."</p><div class="testi-author">Carlos Martínez</div><div class="testi-origin">Valencia, España</div></div>
-    <div class="testi-card reveal delay-3"><div class="stars">★★★★★</div><p class="testi-text">"We stumbled upon this gem in Campoamor. The Garlic Chilli King Prawn was phenomenal! Such a warm welcome — truly felt at home away from home."</p><div class="testi-author">Apeal Adhikari</div><div class="testi-origin">Amsterdam, Netherlands</div></div>
-    <div class="testi-card reveal delay-1"><div class="stars">★★★★★</div><p class="testi-text">"Took my whole family — the vegetarian options are incredible. The Palak Paneer and Aloo Gobi are some of the best I've had anywhere in Europe."</p><div class="testi-author">Priya Sharma</div><div class="testi-origin">München, Germany</div></div>
-    <div class="testi-card reveal delay-2"><div class="stars">★★★★★</div><p class="testi-text">"The Chicken Lababdar is a must-order — so rich and creamy. The Peshwari Naan alongside it was perfect. Great value for money, wonderful atmosphere!"</p><div class="testi-author">Anna-Lise Broberg</div><div class="testi-origin">Copenhagen, Denmark</div></div>
-    <div class="testi-card reveal delay-3"><div class="stars">★★★★★</div><p class="testi-text">"As a Nepali living in Spain, finding food this authentic is emotional. The Sekuwa and the Mo:Mo taste exactly like home. This place deserves every tourist in Alicante."</p><div class="testi-author">Arun Tamang</div><div class="testi-origin">Barcelona, España</div></div>
   </div>
 </section>
 
