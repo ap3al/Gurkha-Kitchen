@@ -56,6 +56,63 @@
       --logo-color: #1C1410;
       --logo-accent: #9B2B2B;
     }
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.45);
+      transition: transform .25s ease, box-shadow .25s ease;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-4px) scale(1.07);
+      box-shadow: 0 14px 36px rgba(37,211,102,0.55);
+    }
+    .whatsapp-float svg { flex-shrink: 0; }
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 70px;
+      background: #111;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap;
+      padding: 7px 13px;
+      border-radius: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(8px);
+      transition: opacity .2s ease, transform .2s ease;
+      font-family: 'Jost', sans-serif;
+    }
+    .whatsapp-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -6px;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: #111;
+      border-right: none;
+    }
+    .whatsapp-float:hover .whatsapp-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    @media (max-width: 600px) {
+      .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+      .whatsapp-tooltip { display: none; }
+    }
+
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Jost', sans-serif;
@@ -737,7 +794,9 @@
     </div>
     <div class="form-card reveal-right">
       <h3>Make a Reservation</h3>
-      <form id="resForm" onsubmit="handleReservationSubmit(event)">
+      <form id="resForm" action="https://formspree.io/f/xreywnza" method="POST" onsubmit="handleReservationSubmit(event)">
+        <input type="text" name="_gotcha" style="display:none" />
+        <input type="hidden" name="_subject" value="New Reservation Request - Gurkha Kitchen" />
         <div class="form-row">
           <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="María" required /></div>
           <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="García" required /></div>
@@ -752,8 +811,8 @@
             <label>Time</label>
             <select name="reservation_time" required>
               <option value="">Select time</option>
-              <optgroup label="Lunch"><option>12:15</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option><option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option><option>18:00</option><option>18:30</option></optgroup>
-              <optgroup label="Dinner"><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option><option>23:00</option></optgroup>
+              <optgroup label="Lunch"><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option></optgroup>
+              <optgroup label="Dinner"><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option></optgroup>
             </select>
           </div>
         </div>
@@ -764,7 +823,7 @@
             <option>1 person</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5 people</option><option>6 people</option><option>7 people</option><option>8 people</option><option>9 people</option><option>10 people</option><option>10-12 people</option><option>12-14 people</option><option>14+ people (group)</option>
           </select>
         </div>
-        <div class="form-group"><label>Special Requests</label><textarea name="special_requests" placeholder="Allergies, celebrations, high chair needed..." rows="3"></textarea></div>
+        <div class="form-group"><label>Special Requests</label><textarea name="special_requests" placeholder="Allergies, dietary requirements, celebrations, high chair needed..." rows="3"></textarea></div>
         <button type="submit" class="form-submit">Confirm Reservation →</button>
         <p class="form-note">We will confirm your booking by phone or WhatsApp within an hour.</p>
       </form>
@@ -810,6 +869,14 @@
     </div>
   </div>
 </section>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/34623625993" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="#fff">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.824.738 5.476 2.027 7.788L0 32l8.424-2.01A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.779-1.856l-.486-.29-5.002 1.194 1.228-4.875-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.902c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.63-.199-.896.199-.265.398-1.029 1.294-1.261 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.362-2.215-2.76-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.2-.232.266-.398.398-.664.133-.265.067-.497-.033-.697-.1-.199-.896-2.161-1.228-2.96-.323-.777-.651-.672-.896-.684l-.764-.013c-.265 0-.697.1-.1063.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.854 1.626 4.12c.199.265 2.808 4.287 6.803 6.014.951.41 1.693.655 2.271.839.954.304 1.823.261 2.51.158.765-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.099-.165-.365-.265-.763-.464z"/>
+  </svg>
+  <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+</a>
 
 <!-- FOOTER -->
 <footer>
@@ -937,42 +1004,25 @@
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
   /* ── FORM ── */
-  // 👇 STEP 4: Paste your Web App URL here after deploying the Apps Script
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQugxj4-oRa1uhwwGHk_eni30ZeZ1tSPqP5TZ6zFWWQbEWrFBRWcfLG_G_ahp4eJ4ySA/exec';
-
   function handleReservationSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('resForm');
     const successMsg = document.getElementById('successMsg');
     const btn = form.querySelector('.form-submit');
-
     btn.textContent = 'Sending…';
     btn.disabled = true;
-
-    const data = {
-      first_name:       form.querySelector('[name="first_name"]').value,
-      last_name:        form.querySelector('[name="last_name"]').value,
-      email:            form.querySelector('[name="email"]').value,
-      phone:            form.querySelector('[name="phone"]').value,
-      reservation_date: form.querySelector('[name="reservation_date"]').value,
-      reservation_time: form.querySelector('[name="reservation_time"]').value,
-      guests:           form.querySelector('[name="guests"]').value,
-      special_requests: form.querySelector('[name="special_requests"]').value
-    };
-
-    fetch(APPS_SCRIPT_URL, {
+    fetch(form.action, {
       method: 'POST',
-      body: JSON.stringify(data)
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
     })
-    .then(r => r.json())
-    .then(res => {
-      if (res.status === 'ok') {
+    .then(r => r.ok ? r.json() : r.text().then(t => { throw new Error(t); }))
+    .then(data => {
+      if (data.ok || data.success) {
         form.style.display = 'none';
         successMsg.style.display = 'block';
         successMsg.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        throw new Error('Script error');
-      }
+      } else { throw new Error('Error'); }
     })
     .catch(() => {
       btn.textContent = 'Confirm Reservation →';
