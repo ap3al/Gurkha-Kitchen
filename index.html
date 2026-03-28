@@ -4,12 +4,20 @@
   <link rel="icon" href="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEMYm_p&_nc_oc=Adp_n0sc_7-Mv7F8FZC7F9zGnuQGdALt6nuIYdb4M-LzqRDn8ehIrYxDCrJq6nIC86HjFDSnygWSwC&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=qTFiSyjdk-Rn1MQ8fkusXQ&_nc_ss=7a32e&oh=00_Afwkq6LwWOGF2lHnrr6dbhK7Hi6jvAsh4cXGtWj6_PNKIQ&oe=69CDD85F" type="image/png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
   <title>Gurkha Kitchen – Nepali & Indian Cuisine · Campoamor, Alicante</title>
   <meta name="description" content="Authentic Nepali & Indian cuisine in Campoamor, Dehesa De Campoamor, Alicante. Momo, Tandoori, Biryani and more. Book your table or order takeaway. Tel: 623 625 993." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Kill iOS/Android auto-detected phone/address link blue colour */
+    a[href^="tel"], a[href^="sms"],
+    .hero-stats .stat-num,
+    .hero-stat a {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
     :root {
       --bronze: #C49A5A;
       --bronze-light: #E8C589;
@@ -101,9 +109,22 @@
       width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
       border: 2px solid rgba(196,154,90,0.6); flex-shrink: 0;
       transition: border-color .3s, box-shadow .3s, transform .3s;
+      position: relative;
+      background: #1A1512;
     }
     .nav-logo:hover .nav-logo-img-wrap { border-color: var(--bronze); box-shadow: 0 0 0 4px rgba(196,154,90,0.2); transform: scale(1.05); }
-    .nav-logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1; }
+    /* Fallback initials shown when logo image fails */
+    .logo-fallback {
+      display: none;
+      position: absolute; inset: 0; z-index: 0;
+      align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--bronze);
+      background: #1A1512;
+      letter-spacing: 0.04em;
+    }
     .logo-text {
       font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600;
       color: #fff; letter-spacing: 0.04em; transition: color var(--transition); line-height: 1;
@@ -338,8 +359,15 @@
 <!-- NAVIGATION -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
-    <div class="nav-logo-img-wrap">
-      <img src="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEMYm_p&_nc_oc=Adp_n0sc_7-Mv7F8FZC7F9zGnuQGdALt6nuIYdb4M-LzqRDn8ehIrYxDCrJq6nIC86HjFDSnygWSwC&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=qTFiSyjdk-Rn1MQ8fkusXQ&_nc_ss=7a32e&oh=00_Afwkq6LwWOGF2lHnrr6dbhK7Hi6jvAsh4cXGtWj6_PNKIQ&oe=69CDD85F" alt="Gurkha Kitchen Logo" />
+    <div class="nav-logo-img-wrap" id="logoWrap">
+      <!-- Fallback: styled initials shown if image fails to load -->
+      <div class="logo-fallback" id="logoFallback">GK</div>
+      <img
+        id="logoImg"
+        src="https://www.instagram.com/the_gurkha.kitchen/profile_pic"
+        alt="Gurkha Kitchen Logo"
+        onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"
+      />
     </div>
     <span class="logo-text">Gurkha <strong>Kitchen</strong></span>
   </a>
@@ -886,6 +914,20 @@
   document.addEventListener('DOMContentLoaded', () => {
     const d = document.querySelector('input[type="date"]');
     if (d) d.min = new Date().toISOString().split('T')[0];
+    /* Logo image — show GK fallback immediately if broken */
+    const logoImg = document.getElementById('logoImg');
+    const logoFallback = document.getElementById('logoFallback');
+    if (logoImg) {
+      logoImg.addEventListener('error', () => {
+        logoImg.style.display = 'none';
+        logoFallback.style.display = 'flex';
+      });
+      /* If already errored before listener attached */
+      if (!logoImg.complete || logoImg.naturalWidth === 0) {
+        logoImg.style.display = 'none';
+        logoFallback.style.display = 'flex';
+      }
+    }
   });
 
   /* ── SCROLL REVEAL ── */
