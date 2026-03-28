@@ -74,7 +74,6 @@
       padding: 1.2rem 5vw;
       background: transparent;
       transition: background .4s, box-shadow .4s, padding .3s;
-      isolation: isolate;
     }
     nav.scrolled {
       background: var(--nav-bg);
@@ -83,58 +82,35 @@
       box-shadow: 0 1px 0 var(--border);
       padding: .85rem 5vw;
     }
+    /* On mobile the nav is always solid so the logo is always visible */
+    @media (max-width: 900px) {
+      nav {
+        background: rgba(10,7,4,0.92) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 1px 0 rgba(196,154,90,0.12);
+      }
+      [data-theme="light"] nav {
+        background: rgba(253,250,244,0.96) !important;
+      }
+      [data-theme="light"] nav .logo-text { color: var(--text-primary) !important; }
+      [data-theme="light"] nav .hamburger span { background: var(--text-primary) !important; }
+    }
     .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo-img-wrap {
       width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
       border: 2px solid rgba(196,154,90,0.6); flex-shrink: 0;
-      box-shadow: 0 0 0 0 rgba(196,154,90,0);
       transition: border-color .3s, box-shadow .3s, transform .3s;
-      /* Always visible: white ring + drop shadow ensures contrast on any bg */
-      outline: 1.5px solid rgba(255,255,255,0.18);
     }
     .nav-logo:hover .nav-logo-img-wrap { border-color: var(--bronze); box-shadow: 0 0 0 4px rgba(196,154,90,0.2); transform: scale(1.05); }
     .nav-logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .logo-text {
       font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600;
       color: #fff; letter-spacing: 0.04em; transition: color var(--transition); line-height: 1;
-      /* Text shadow ensures white text is always readable over any background */
-      text-shadow: 0 1px 8px rgba(0,0,0,0.55), 0 0px 2px rgba(0,0,0,0.4);
     }
-    .logo-text strong { color: var(--bronze-light); font-weight: 600; }
-    nav.scrolled .logo-text { color: var(--logo-color); text-shadow: none; }
+    .logo-text strong { color: var(--bronze); font-weight: 600; }
+    nav.scrolled .logo-text { color: var(--logo-color); }
     nav.scrolled .logo-text strong { color: var(--bronze); }
-    /* On mobile: always show a semi-transparent backdrop behind the logo so it's readable
-       even over light sections when nav is not yet scrolled */
-    @media (max-width: 900px) {
-      .nav-logo-img-wrap {
-        width: 40px; height: 40px;
-        border: 2px solid var(--bronze);
-        box-shadow: 0 2px 12px rgba(0,0,0,0.45);
-      }
-      .logo-text { font-size: 1.18rem; }
-      /* Pill backdrop behind the logo for contrast on any section */
-      .nav-logo::before {
-        content: '';
-        position: absolute;
-        left: calc(5vw - 10px);
-        top: 50%;
-        transform: translateY(-50%);
-        width: 210px;
-        height: 52px;
-        background: rgba(10,7,4,0.45);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 30px;
-        border: 1px solid rgba(196,154,90,0.15);
-        z-index: -1;
-        transition: opacity .4s;
-      }
-      nav.scrolled .nav-logo::before { opacity: 0; pointer-events: none; }
-    }
-    @media (max-width: 400px) {
-      .logo-text { font-size: 1rem; }
-      .nav-logo::before { width: 175px; }
-    }
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a { text-decoration: none; color: rgba(255,255,255,0.82); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color .2s; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--bronze); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
@@ -786,7 +762,7 @@
       <p class="section-lead">Located in Dehesa De Campoamor, Orihuela Costa — easy to find with parking nearby.</p>
       <div class="contact-line">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bronze)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>Rda. Ramon de Campoamor, 3, Dehesa De Campoamor, 03189 Orihuela Costa, Alicante</span>
+        <a href="https://maps.app.goo.gl/UhYwLsdfdywq3t3aA" target="_blank" rel="noopener noreferrer" style="color:var(--text-secondary);text-decoration:none;">Rda. Ramon de Campoamor, 3, Dehesa De Campoamor, 03189 Orihuela Costa, Alicante</a>
       </div>
       <div class="contact-line">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bronze)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 01.02 4.85 2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -799,8 +775,12 @@
     </div>
     <div class="reveal-right">
       <div class="map-embed">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8!2d-0.73256!3d37.89442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63608f0f3b5b5d%3A0x9c0a3a1fcf9e2e3!2sRonda+de+Campoamor%2C+3%2C+03189+Orihuela%2C+Alicante!5e0!3m2!1sen!2ses!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://maps.google.com/maps?q=GURKHA+KITCHEN,+Ronda+de+Ramon+de+Campoamor,+Dehesa+de+Campoamor,+Orihuela,+Alicante&output=embed&z=16" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+      <a href="https://maps.app.goo.gl/UhYwLsdfdywq3t3aA" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;margin-top:1.2rem;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Open in Google Maps
+      </a>
     </div>
   </div>
 </section>
@@ -850,7 +830,7 @@
     <div class="social-links">
       <a href="https://www.facebook.com/profile.php?id=61582056176771" target="_blank" rel="noopener noreferrer">Facebook</a>
       <a href="https://www.instagram.com/the_gurkha.kitchen/" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="https://www.google.com/maps/place/GURKHA+KITCHEN/@37.9009684,-0.7510102,698m" target="_blank" rel="noopener noreferrer">Google Maps</a>
+      <a href="https://maps.app.goo.gl/UhYwLsdfdywq3t3aA" target="_blank" rel="noopener noreferrer">Google Maps</a>
     </div>
   </div>
 </footer>
