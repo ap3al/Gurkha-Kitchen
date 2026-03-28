@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <!-- Favicon: inline SVG logo -->
-   <link rel="icon" type="image/png" href="images/publicfavicon.png.png" />
+   <link rel="icon" type="image/png" href="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEu4KnO&_nc_oc=AdpPsNftMIlA6GYv5_CYqEo9Gq70_Bu3R8nIp4j6qv60Q1XoWhCOzowse6flvaVlUDVunhJJQnlrxpwFOb1UKwfG&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=34IEoqv8jxFSVg6Ioe4nUg&_nc_ss=7a32e&oh=00_Afxx6D_XLwraJ1j12RjDbXOrBZdIuHBAbOt0aX1tfURY9g&oe=69CDA01F" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -61,24 +61,11 @@
 }
     /* ── NAV LOGO IMAGE ── */
 .nav-logo-img {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   flex-shrink: 0;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.25);
-  padding: 4px;
-}
-
-.nav-logo-img:hover {
-  transform: scale(1.08);
-}
-
-/* When navbar scrolls */
-nav.scrolled .nav-logo-img {
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
 }
 .logo-text {
   font-family: 'Cormorant Garamond', serif;
@@ -97,9 +84,7 @@ nav.scrolled .nav-logo-img {
 nav.scrolled .logo-text {
   color: var(--red);
 }
-nav.scrolled {
-  border-bottom: 1px solid rgba(184,131,74,0.15);
-}
+
 nav.scrolled .logo-text strong {
   color: var(--bronze);
 }
@@ -578,9 +563,9 @@ nav.scrolled .logo-text strong {
 <body>
 
 <!-- NAVIGATION -->
-<nav id="navbar"> 
+<nav id="navbar">
   <a href="#hero" class="nav-logo">
-  <img src="images/publicfavicon.png.png" alt="Gurkha Kitchen Logo" class="nav-logo-img">
+  <img src="https://scontent.fpkr1-1.fna.fbcdn.net/v/t39.30808-6/656907783_122103565251068539_4902974972001002960_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=Z0QoPeFujH0Q7kNvwEu4KnO&_nc_oc=AdpPsNftMIlA6GYv5_CYqEo9Gq70_Bu3R8nIp4j6qv60Q1XoWhCOzowse6flvaVlUDVunhJJQnlrxpwFOb1UKwfG&_nc_zt=23&_nc_ht=scontent.fpkr1-1.fna&_nc_gid=34IEoqv8jxFSVg6Ioe4nUg&_nc_ss=7a32e&oh=00_Afxx6D_XLwraJ1j12RjDbXOrBZdIuHBAbOt0aX1tfURY9g&oe=69CDA01F" alt="Gurkha Kitchen Logo" class="nav-logo-img">
   <span class="logo-text">Gurkha <strong>Kitchen</strong></span>
 </a>
   <ul class="nav-links" id="navLinks">
