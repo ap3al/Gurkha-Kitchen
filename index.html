@@ -396,6 +396,100 @@
       .form-card { padding: 2rem; }
       .menu-tab { padding: 0.5rem 1.1rem; font-size: 0.8rem; }
     }
+
+    /* ── LANGUAGE SELECTOR ── */
+    .lang-selector {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 30px;
+      padding: 5px 12px 5px 10px;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.05em;
+      transition: border-color .25s, color .25s, background .25s;
+      white-space: nowrap;
+    }
+    nav.scrolled .lang-btn { border-color: var(--border-strong); color: var(--text-secondary); }
+    .lang-btn:hover { border-color: var(--bronze); color: var(--bronze); }
+    .lang-flag { font-size: 1rem; line-height: 1; }
+    .lang-arrow { font-size: 0.6rem; margin-left: 2px; opacity: 0.6; transition: transform .25s; }
+    .lang-selector.open .lang-arrow { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      min-width: 160px;
+      z-index: 300;
+      animation: langFadeIn .2s ease;
+    }
+    @keyframes langFadeIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+    .lang-selector.open .lang-dropdown { display: block; }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      transition: background .2s, color .2s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .lang-option:hover { background: var(--surface); color: var(--bronze); }
+    .lang-option.active { color: var(--bronze); font-weight: 600; }
+    .lang-option-flag { font-size: 1.1rem; }
+    .lang-option-name { flex: 1; }
+    .lang-option-native { font-size: 0.7rem; color: var(--text-muted); }
+    @media (max-width: 900px) {
+      .lang-selector { display: none; }
+      .lang-selector-mobile { display: flex !important; }
+    }
+    .lang-selector-mobile {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .lang-mobile-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border-strong);
+      background: none;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      transition: all .2s;
+    }
+    .lang-mobile-btn:hover, .lang-mobile-btn.active { border-color: var(--bronze); color: var(--bronze); background: rgba(196,154,90,0.08); }
   </style>
 </head>
 <body>
@@ -416,11 +510,36 @@
     <span class="logo-text">Gurkha <strong>Kitchen</strong></span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#location">Find Us</a></li>
+    <li><a href="#about" id="navAbout">About</a></li>
+    <li><a href="#menu" id="navMenu">Menu</a></li>
+    <li><a href="#experience" id="navExperience">Experience</a></li>
+    <li><a href="#location" id="navFind">Find Us</a></li>
     <li><a href="#reservation" class="nav-cta">Reserve a Table</a></li>
+    <li>
+      <div class="lang-selector-mobile" id="langSelectorMobile">
+        <button class="lang-mobile-btn active" data-lang-m="en">🇬🇧 EN</button>
+        <button class="lang-mobile-btn" data-lang-m="de">🇩🇪 DE</button>
+        <button class="lang-mobile-btn" data-lang-m="fr">🇫🇷 FR</button>
+        <button class="lang-mobile-btn" data-lang-m="es">🇪🇸 ES</button>
+        <button class="lang-mobile-btn" data-lang-m="it">🇮🇹 IT</button>
+      </div>
+    </li>
+    <li>
+      <div class="lang-selector" id="langSelector">
+        <button class="lang-btn" id="langBtn" aria-label="Select language">
+          <span class="lang-flag" id="currentFlag">🇬🇧</span>
+          <span id="currentLangCode">EN</span>
+          <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" data-lang="en"><span class="lang-option-flag">🇬🇧</span><span class="lang-option-name">English</span><span class="lang-option-native">English</span></button>
+          <button class="lang-option" data-lang="de"><span class="lang-option-flag">🇩🇪</span><span class="lang-option-name">German</span><span class="lang-option-native">Deutsch</span></button>
+          <button class="lang-option" data-lang="fr"><span class="lang-option-flag">🇫🇷</span><span class="lang-option-name">French</span><span class="lang-option-native">Français</span></button>
+          <button class="lang-option" data-lang="es"><span class="lang-option-flag">🇪🇸</span><span class="lang-option-name">Spanish</span><span class="lang-option-native">Español</span></button>
+          <button class="lang-option" data-lang="it"><span class="lang-option-flag">🇮🇹</span><span class="lang-option-name">Italian</span><span class="lang-option-native">Italiano</span></button>
+        </div>
+      </div>
+    </li>
     <li>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <div class="theme-toggle-knob" id="themeKnob">☀️</div>
@@ -444,19 +563,19 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">· Dehesa De Campoamor · Alicante</div>
-    <h1>Nepali &amp; Indian<br /><em>Cuisine</em><br />by the Sea</h1>
-    <p class="hero-sub">From handcrafted Mo:Mo dumplings to sizzling Tandoori platters — 100+ authentic Himalayan dishes on the Costa Blanca.</p>
+    <div id="heroTag" class="hero-tag">· Dehesa De Campoamor · Alicante</div>
+    <h1 id="heroH1">Nepali &amp; Indian<br /><em>Cuisine</em><br />by the Sea</h1>
+    <p id="heroSub" class="hero-sub">From handcrafted Mo:Mo dumplings to sizzling Tandoori platters — 100+ authentic Himalayan dishes on the Costa Blanca.</p>
     <div class="hero-btns">
-      <a href="#reservation" class="btn-primary">Reserve a Table</a>
-      <a href="#menu" class="btn-outline">View Full Menu</a>
+      <a href="#reservation" class="btn-primary" id="heroBtnReserve">Reserve a Table</a>
+      <a href="#menu" class="btn-outline" id="heroBtnMenu">View Full Menu</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="stat-num">100+</span><span class="stat-label">Authentic Dishes Served With Love</span></div>
-      <div class="hero-stat"><span class="stat-num">623 625 993</span><span class="stat-label">Call or WhatsApp</span></div>
+      <div class="hero-stat"><span class="stat-num">100+</span><span id="heroStatLabel" class="stat-label">Authentic Dishes Served With Love</span></div>
+      <div class="hero-stat"><span class="stat-num">623 625 993</span><span id="heroStatCall" class="stat-label">Call or WhatsApp</span></div>
     </div>
   </div>
-  <div class="scroll-indicator"><div class="scroll-dot"></div><span>Scroll</span></div>
+  <div class="scroll-indicator"><div class="scroll-dot"></div><span id="scrollLabel">Scroll</span></div>
 </section>
 
 <!-- ABOUT -->
@@ -466,24 +585,24 @@
     <div class="about-badge"><strong>Nepali &amp;<br/>Indian</strong><span>Cuisine</span></div>
   </div>
   <div class="reveal-right">
-    <div class="section-tag">Our Story</div>
-    <h2>Where Nepal<br />Meets <em>España</em></h2>
-    <p class="section-lead">Born in the foothills of the Himalayas, our kitchen brings the warmth of Nepalese hospitality to the sunny shores of Orihuela Costa.</p>
+    <div id="aboutTag" class="section-tag">Our Story</div>
+    <h2 id="aboutH2">Where Nepal<br />Meets <em>España</em></h2>
+    <p id="aboutLead" class="section-lead">Born in the foothills of the Himalayas, our kitchen brings the warmth of Nepalese hospitality to the sunny shores of Orihuela Costa.</p>
     <div class="about-feature reveal delay-1">
       <div class="about-icon">🍲</div>
-      <div><h4>100+ Authentic Himalayan Flavours, Timeless Taste</h4><p>From Mo:Mo dumplings and Dal Soup to Biryani, Tandoori Sizzlers, and Korma — something for every taste.</p></div>
+      <div><h4 id="feat1Title">100+ Authentic Himalayan Flavours, Timeless Taste</h4><p id="feat1Desc">From Mo:Mo dumplings and Dal Soup to Biryani, Tandoori Sizzlers, and Korma — something for every taste.</p></div>
     </div>
     <div class="about-feature reveal delay-2">
       <div class="about-icon">🌿</div>
-      <div><h4>Himalayan Spices, Local Ingredients</h4><p>We combine imported Nepali spices with the freshest produce from the Valencia coast.</p></div>
+      <div><h4 id="feat2Title">Himalayan Spices, Local Ingredients</h4><p id="feat2Desc">We combine imported Nepali spices with the freshest produce from the Valencia coast.</p></div>
     </div>
     <div class="about-feature reveal delay-3">
       <div class="about-icon">🥡</div>
-      <div><h4>Dine-in &amp; Takeaway</h4><p>Enjoy a full restaurant experience or order takeaway. Call or WhatsApp us at <strong>623 625 993</strong>.</p></div>
+      <div><h4 id="feat3Title">Dine-in &amp; Takeaway</h4><p id="feat3Desc">Enjoy a full restaurant experience or order takeaway. Call or WhatsApp us at <strong>623 625 993</strong>.</p></div>
     </div>
     <div class="about-feature reveal delay-4">
       <div class="about-icon">🤝</div>
-      <div><h4>Namaste — You Are Family</h4><p>In Nepal, guests are treated as a god. That philosophy guides every visit to our table.</p></div>
+      <div><h4 id="feat4Title">Namaste — You Are Family</h4><p id="feat4Desc">In Nepal, guests are treated as a god. That philosophy guides every visit to our table.</p></div>
     </div>
   </div>
 </section>
@@ -491,9 +610,9 @@
 <!-- FOOD SHOWCASE -->
 <section id="showcase">
   <div class="showcase-header reveal">
-    <div class="section-tag">From Our Kitchen</div>
-    <h2>A Feast for the <em>Eyes</em></h2>
-    <p>Every plate tells a story of mountains, spices and generations of love.</p>
+    <div id="showcaseTag" class="section-tag">From Our Kitchen</div>
+    <h2 id="showcaseH2">A Feast for the <em>Eyes</em></h2>
+    <p id="showcaseDesc">Every plate tells a story of mountains, spices and generations of love.</p>
   </div>
   <div class="showcase-grid">
     <div class="showcase-item">
@@ -522,9 +641,9 @@
 <!-- MENU SECTION — clean single definition, no duplicates -->
 <section id="menu">
   <div class="reveal">
-    <div class="section-tag">Our Menu</div>
-    <h2>What We <em>Serve</em></h2>
-    <p class="section-lead">Browse our full menu — from light starters to hearty mains. Available for dine-in and takeaway.</p>
+    <div id="menuTag" class="section-tag">Our Menu</div>
+    <h2 id="menuH2">What We <em>Serve</em></h2>
+    <p id="menuLead" class="section-lead">Browse our full menu — from light starters to hearty mains. Available for dine-in and takeaway.</p>
   </div>
 
   <div class="menu-tabs reveal">
@@ -754,10 +873,10 @@
     </div>
   </div>
   <div class="exp-features">
-    <div class="exp-feature-card reveal delay-1"><span class="exp-feature-icon">🏔️</span><h4>Himalayan Soul</h4><p>Thangka art, copper lanterns and Nepali artefacts transport you straight to Kathmandu.</p></div>
-    <div class="exp-feature-card reveal delay-2"><span class="exp-feature-icon">🥟</span><h4>Handmade Mo:Mo</h4><p>Our dumplings are made fresh every day — a true taste of Nepali street food culture.</p></div>
-    <div class="exp-feature-card reveal delay-3"><span class="exp-feature-icon">🌿</span><h4>100+ Authentic Dishes</h4><p>Meat, fish, vegetarian and vegan options. Mild to fiery. Something for every guest.</p></div>
-    <div class="exp-feature-card reveal delay-4"><span class="exp-feature-icon">🤝</span><h4>Namaste Welcome</h4><p>In Nepal a guest is treated as a god. English, Spanish &amp; Nepali spoken. Families welcome.</p></div>
+    <div class="exp-feature-card reveal delay-1"><span class="exp-feature-icon">🏔️</span><h4 id="exp1Title">Himalayan Soul</h4><p id="exp1Desc">Thangka art, copper lanterns and Nepali artefacts transport you straight to Kathmandu.</p></div>
+    <div class="exp-feature-card reveal delay-2"><span class="exp-feature-icon">🥟</span><h4 id="exp2Title">Handmade Mo:Mo</h4><p id="exp2Desc">Our dumplings are made fresh every day — a true taste of Nepali street food culture.</p></div>
+    <div class="exp-feature-card reveal delay-3"><span class="exp-feature-icon">🌿</span><h4 id="exp3Title">100+ Authentic Dishes</h4><p id="exp3Desc">Meat, fish, vegetarian and vegan options. Mild to fiery. Something for every guest.</p></div>
+    <div class="exp-feature-card reveal delay-4"><span class="exp-feature-icon">🤝</span><h4 id="exp4Title">Namaste Welcome</h4><p id="exp4Desc">In Nepal a guest is treated as a god. English, Spanish &amp; Nepali spoken. Families welcome.</p></div>
   </div>
 </section>
 
@@ -765,37 +884,37 @@
 <section id="reservation">
   <div class="res-wrap">
     <div class="reveal-left">
-      <div class="section-tag">Reservations</div>
-      <h2>Book Your<br /><em>Table</em></h2>
-      <p class="section-lead">We welcome walk-ins, but a reservation guarantees the best experience — especially on weekends.</p>
-      <h3>Call or WhatsApp</h3>
-      <p>We're happy to help in English, Spanish and Nepali.</p>
+      <div id="resTag" class="section-tag">Reservations</div>
+      <h2 id="resH2">Book Your<br /><em>Table</em></h2>
+      <p id="resLead" class="section-lead">We welcome walk-ins, but a reservation guarantees the best experience — especially on weekends.</p>
+      <h3 id="resCallTitle">Call or WhatsApp</h3>
+      <p id="resCallDesc">We're happy to help in English, Spanish and Nepali.</p>
       <div class="contact-line">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bronze)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5 19.79 19.79 0 01.02 4.85 2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         <a href="tel:+34623625993"><strong>623 625 993</strong></a>
       </div>
-      <h3>Address</h3>
+      <h3 id="resAddrTitle">Address</h3>
       <p>Rda. Ramon de Campoamor, 3<br /> Dehesa De Campoamor, 03189 Orihuela Costa<br />Alicante, Spain</p>
-      <h3>Opening Hours</h3>
-      <p>Monday – Sunday: 12:00 – 23:00</p>
+      <h3 id="resHoursTitle">Opening Hours</h3>
+      <p id="resHours">Monday – Sunday: 12:00 – 23:00</p>
     </div>
     <div class="form-card reveal-right">
-      <h3>Make a Reservation</h3>
+      <h3 id="resFormTitle">Make a Reservation</h3>
       <form id="resForm" action="https://formspree.io/f/xreywnza" method="POST" onsubmit="handleReservationSubmit(event)">
         <input type="text" name="_gotcha" style="display:none" />
         <input type="hidden" name="_subject" value="New Reservation Request - Gurkha Kitchen" />
         <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="María" required /></div>
-          <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="García" required /></div>
+          <div class="form-group"><label id="resFirstNameLabel">First Name</label><input type="text" name="first_name" placeholder="María" required /></div>
+          <div class="form-group"><label id="resLastNameLabel">Last Name</label><input type="text" name="last_name" placeholder="García" required /></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
-          <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" name="phone" placeholder="+34 600 000 000" required /></div>
+          <div class="form-group"><label id="resEmailLabel">Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+          <div class="form-group"><label id="resPhoneLabel">Phone / WhatsApp</label><input type="tel" name="phone" placeholder="+34 600 000 000" required /></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Date</label><input type="date" name="reservation_date" required /></div>
+          <div class="form-group"><label id="resDateLabel">Date</label><input type="date" name="reservation_date" required /></div>
           <div class="form-group">
-            <label>Time</label>
+            <label id="resTimeLabel">Time</label>
             <select name="reservation_time" required>
               <option value="">Select time</option>
               <optgroup label="Lunch"><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option></optgroup>
@@ -804,15 +923,15 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Number of Guests</label>
+          <label id="resGuestsLabel">Number of Guests</label>
           <select name="guests" required>
             <option value="">Select guests</option>
             <option>1 person</option><option>2 people</option><option>3 people</option><option>4 people</option><option>5 people</option><option>6 people</option><option>7 people</option><option>8 people</option><option>9 people</option><option>10 people</option><option>10-12 people</option><option>12-14 people</option><option>14+ people (group)</option>
           </select>
         </div>
-        <div class="form-group"><label>Special Requests</label><textarea name="special_requests" placeholder="Allergies, dietary requirements, celebrations, high chair needed..." rows="3"></textarea></div>
-        <button type="submit" class="form-submit">Confirm Reservation →</button>
-        <p class="form-note">We will confirm your booking by phone or WhatsApp within an hour.</p>
+        <div class="form-group"><label id="resSpecialLabel">Special Requests</label><textarea id="resSpecialTextarea" name="special_requests" placeholder="Allergies, dietary requirements, celebrations, high chair needed..." rows="3"></textarea></div>
+        <button type="submit" id="resSubmitBtn" class="form-submit">Confirm Reservation →</button>
+        <p id="resNote" class="form-note">We will confirm your booking by phone or WhatsApp within an hour.</p>
       </form>
       <div class="success-msg" id="successMsg">
         🙏 Namaste! Your reservation request has been received.<br />
@@ -826,12 +945,12 @@
 <!-- LOCATION -->
 <section id="location">
   <div class="reveal">
-    <div class="section-tag">Find Us</div>
-    <h2>We're in <em>Campoamor</em></h2>
+    <div id="locTag" class="section-tag">Find Us</div>
+    <h2 id="locH2">We're in <em>Campoamor</em></h2>
   </div>
   <div class="location-grid">
     <div class="reveal-left">
-      <p class="section-lead">Located in Dehesa De Campoamor, Orihuela Costa — easy to find with parking nearby.</p>
+      <p id="locLead" class="section-lead">Located in Dehesa De Campoamor, Orihuela Costa — easy to find with parking nearby.</p>
       <div class="contact-line">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--bronze)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <a href="https://maps.app.goo.gl/UhYwLsdfdywq3t3aA" target="_blank" rel="noopener noreferrer" style="color:var(--text-secondary);text-decoration:none;">Rda. Ramon de Campoamor, 3, Dehesa De Campoamor, 03189 Orihuela Costa, Alicante</a>
@@ -843,7 +962,7 @@
       <table class="hours-table">
         <tr><td>Monday – Sunday</td><td>12:00 – 23:00</td></tr>
       </table>
-      <a href="#reservation" class="btn-primary" style="display:inline-block;margin-top:2.5rem;">Book a Table</a>
+      <a href="#reservation" class="btn-primary locBook" style="display:inline-block;margin-top:2.5rem;">Book a Table</a>
     </div>
     <div class="reveal-right">
       <div class="map-embed">
@@ -851,7 +970,7 @@
       </div>
       <a href="https://maps.app.goo.gl/UhYwLsdfdywq3t3aA" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;margin-top:1.2rem;justify-content:center;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Open in Google Maps
+        <span id="locOpenMaps">Open in Google Maps</span>
       </a>
     </div>
   </div>
@@ -863,8 +982,8 @@
     <path d="M16 0C7.163 0 0 7.163 0 16c0 2.824.738 5.476 2.027 7.788L0 32l8.424-2.01A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.779-1.856l-.486-.29-5.002 1.194 1.228-4.875-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.902c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.63-.199-.896.199-.265.398-1.029 1.294-1.261 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.983-2.362-2.215-2.76-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.2-.232.266-.398.398-.664.133-.265.067-.497-.033-.697-.1-.199-.896-2.161-1.228-2.96-.323-.777-.651-.672-.896-.684l-.764-.013c-.265 0-.697.1-.1063.497-.365.398-1.394 1.362-1.394 3.322s1.427 3.854 1.626 4.12c.199.265 2.808 4.287 6.803 6.014.951.41 1.693.655 2.271.839.954.304 1.823.261 2.51.158.765-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.099-.165-.365-.265-.763-.464z"/>
   </svg>
   <div class="whatsapp-label">
-    <strong>Click here to contact</strong>
-    <span>via WhatsApp</span>
+    <strong id="whatsappLabel">Click here to contact</strong>
+    <span id="whatsappSub">via WhatsApp</span>
   </div>
 </a>
 
@@ -873,20 +992,20 @@
   <div class="footer-top">
     <div>
       <div class="footer-brand">Gurkha <span>Kitchen</span></div>
-      <p class="footer-about">Authentic Nepali &amp; Indian cuisine at Dehesa De Campoamor, Orihuela Costa, Alicante. Where Himalayan tradition meets Mediterranean warmth — one plate at a time.</p>
+      <p id="footerAbout" class="footer-about">Authentic Nepali &amp; Indian cuisine at Dehesa De Campoamor, Orihuela Costa, Alicante. Where Himalayan tradition meets Mediterranean warmth — one plate at a time.</p>
       <p style="margin-top:1.4rem;font-size:0.87rem;">📞 <a href="tel:+34623625993" style="color:var(--bronze);text-decoration:none;font-weight:600;">623 625 993</a></p>
     </div>
     <div>
-      <h4>Navigate</h4>
+      <h4 id="footerNavTitle">Navigate</h4>
       <ul>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="#about" id="footerAboutLink">About Us</a></li>
         <li><a href="#menu">Full Menu</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#reservation">Reservations</a></li>
+        <li><a href="#experience" id="footerExperienceLink">Experience</a></li>
+        <li><a href="#reservation" id="footerReservationsLink">Reservations</a></li>
       </ul>
     </div>
     <div>
-      <h4>Menu</h4>
+      <h4 id="footerMenuTitle">Menu</h4>
       <ul>
         <li><a href="#menu">Starters &amp; Soups</a></li>
         <li><a href="#menu">Tandoori Sizzlers</a></li>
@@ -897,7 +1016,7 @@
       </ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h4 id="footerContactTitle">Contact</h4>
       <ul>
         <li><a href="tel:+34623625993">623 625 993</a></li>
         <li><a href="#location">Rda. Ramon de Campoamor, 3</a></li>
@@ -993,13 +1112,326 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
 
-  /* ── FORM ── */
+  /* ── LANGUAGE SELECTOR ── */
+  const translations = {
+    en: {
+      flag: '🇬🇧', code: 'EN',
+      navAbout: 'About', navMenu: 'Menu', navExperience: 'Experience', navFind: 'Find Us', navReserve: 'Reserve a Table',
+      heroTag: '· Dehesa De Campoamor · Alicante',
+      heroH1: 'Nepali &amp; Indian<br /><em>Cuisine</em><br />by the Sea',
+      heroSub: 'From handcrafted Mo:Mo dumplings to sizzling Tandoori platters — 100+ authentic Himalayan dishes on the Costa Blanca.',
+      heroBtnReserve: 'Reserve a Table', heroBtnMenu: 'View Full Menu',
+      heroStatLabel: 'Authentic Dishes Served With Love', heroStatCall: 'Call or WhatsApp',
+      aboutTag: 'Our Story', aboutH2: 'Where Nepal<br />Meets <em>España</em>',
+      aboutLead: 'Born in the foothills of the Himalayas, our kitchen brings the warmth of Nepalese hospitality to the sunny shores of Orihuela Costa.',
+      feat1Title: '100+ Authentic Himalayan Flavours, Timeless Taste', feat1Desc: 'From Mo:Mo dumplings and Dal Soup to Biryani, Tandoori Sizzlers, and Korma — something for every taste.',
+      feat2Title: 'Himalayan Spices, Local Ingredients', feat2Desc: 'We combine imported Nepali spices with the freshest produce from the Valencia coast.',
+      feat3Title: 'Dine-in &amp; Takeaway', feat3Desc: 'Enjoy a full restaurant experience or order takeaway. Call or WhatsApp us at <strong>623 625 993</strong>.',
+      feat4Title: 'Namaste — You Are Family', feat4Desc: 'In Nepal, guests are treated as a god. That philosophy guides every visit to our table.',
+      showcaseTag: 'From Our Kitchen', showcaseH2: 'A Feast for the <em>Eyes</em>', showcaseDesc: 'Every plate tells a story of mountains, spices and generations of love.',
+      menuTag: 'Our Menu', menuH2: 'What We <em>Serve</em>', menuLead: 'Browse our full menu — from light starters to hearty mains. Available for dine-in and takeaway.',
+      expTag: 'The Experience', expH2: 'More Than a <em>Meal</em>', expDesc: 'A journey through Himalayan culture — in the heart of Orihuela Costa.',
+      exp1Title: 'Himalayan Soul', exp1Desc: 'Thangka art, copper lanterns and Nepali artefacts transport you straight to Kathmandu.',
+      exp2Title: 'Handmade Mo:Mo', exp2Desc: 'Our dumplings are made fresh every day — a true taste of Nepali street food culture.',
+      exp3Title: '100+ Authentic Dishes', exp3Desc: 'Meat, fish, vegetarian and vegan options. Mild to fiery. Something for every guest.',
+      exp4Title: 'Namaste Welcome', exp4Desc: 'In Nepal a guest is treated as a god. English, Spanish &amp; Nepali spoken. Families welcome.',
+      resTag: 'Reservations', resH2: 'Book Your<br /><em>Table</em>',
+      resLead: 'We welcome walk-ins, but a reservation guarantees the best experience — especially on weekends.',
+      resCallTitle: 'Call or WhatsApp', resCallDesc: "We're happy to help in English, Spanish and Nepali.",
+      resAddrTitle: 'Address', resHoursTitle: 'Opening Hours', resHours: 'Monday – Sunday: 12:00 – 23:00',
+      resFormTitle: 'Make a Reservation', resFirstName: 'First Name', resLastName: 'Last Name',
+      resEmail: 'Email', resPhone: 'Phone / WhatsApp', resDate: 'Date', resTime: 'Time', resSelectTime: 'Select time',
+      resGuests: 'Number of Guests', resSelectGuests: 'Select guests', resSpecial: 'Special Requests',
+      resSpecialPlaceholder: 'Allergies, dietary requirements, celebrations, high chair needed...',
+      resSubmit: 'Confirm Reservation →', resNote: 'We will confirm your booking by phone or WhatsApp within an hour.',
+      resSuccess: '🙏 Namaste! Your reservation request has been received.<br />We\'ll confirm shortly by phone or WhatsApp.<br />We look forward to welcoming you at Gurkha Kitchen!',
+      locTag: 'Find Us', locH2: 'We\'re in <em>Campoamor</em>',
+      locLead: 'Located in Dehesa De Campoamor, Orihuela Costa — easy to find with parking nearby.',
+      locBook: 'Book a Table', locOpenMaps: 'Open in Google Maps',
+      footerAbout: 'Authentic Nepali &amp; Indian cuisine at Dehesa De Campoamor, Orihuela Costa, Alicante. Where Himalayan tradition meets Mediterranean warmth — one plate at a time.',
+      footerNav: 'Navigate', footerMenu: 'Menu', footerContact: 'Contact',
+      footerAboutLink: 'About Us', footerExperience: 'Experience', footerReservations: 'Reservations',
+      whatsappLabel: 'Click here to contact', whatsappSub: 'via WhatsApp',
+      scrollLabel: 'Scroll',
+    },
+    de: {
+      flag: '🇩🇪', code: 'DE',
+      navAbout: 'Über Uns', navMenu: 'Speisekarte', navExperience: 'Erlebnis', navFind: 'Finden Sie Uns', navReserve: 'Tisch Reservieren',
+      heroTag: '· Dehesa De Campoamor · Alicante',
+      heroH1: 'Nepalesische &amp; Indische<br /><em>Küche</em><br />am Meer',
+      heroSub: 'Von handgemachten Mo:Mo-Teigtaschen bis zu sizzling Tandoori-Platten — über 100 authentische Himalaya-Gerichte an der Costa Blanca.',
+      heroBtnReserve: 'Tisch Reservieren', heroBtnMenu: 'Vollständige Speisekarte',
+      heroStatLabel: 'Authentische Gerichte mit Liebe serviert', heroStatCall: 'Anrufen oder WhatsApp',
+      aboutTag: 'Unsere Geschichte', aboutH2: 'Wo Nepal<br />auf <em>España</em> trifft',
+      aboutLead: 'Geboren an den Ausläufern des Himalaya bringt unsere Küche die Wärme der nepalesischen Gastfreundschaft an die sonnigen Gestade der Orihuela Costa.',
+      feat1Title: '100+ authentische Himalaya-Aromen, zeitloser Geschmack', feat1Desc: 'Von Mo:Mo-Teigtaschen und Dal-Suppe bis Biryani, Tandoori-Grillplatten und Korma — für jeden etwas dabei.',
+      feat2Title: 'Himalaya-Gewürze, lokale Zutaten', feat2Desc: 'Wir kombinieren importierte nepalesische Gewürze mit den frischesten Produkten der Valencianischen Küste.',
+      feat3Title: 'Restaurant &amp; Mitnahme', feat3Desc: 'Genießen Sie das vollständige Restauranterlebnis oder bestellen Sie zum Mitnehmen. Rufen Sie uns an oder schreiben Sie uns per WhatsApp: <strong>623 625 993</strong>.',
+      feat4Title: 'Namaste — Sie sind Familie', feat4Desc: 'In Nepal werden Gäste wie Götter behandelt. Diese Philosophie begleitet jeden Besuch an unserem Tisch.',
+      showcaseTag: 'Aus Unserer Küche', showcaseH2: 'Ein Fest für die <em>Augen</em>', showcaseDesc: 'Jeder Teller erzählt eine Geschichte von Bergen, Gewürzen und generationsalter Liebe.',
+      menuTag: 'Unsere Speisekarte', menuH2: 'Was Wir <em>Anbieten</em>', menuLead: 'Unsere vollständige Speisekarte — von leichten Vorspeisen bis zu deftigen Hauptgerichten. Für den Restaurantbesuch und zum Mitnehmen.',
+      expTag: 'Das Erlebnis', expH2: 'Mehr als eine <em>Mahlzeit</em>', expDesc: 'Eine Reise durch die Himalaya-Kultur — im Herzen der Orihuela Costa.',
+      exp1Title: 'Himalaya-Seele', exp1Desc: 'Thangka-Kunst, Kupferlaternen und nepalesische Artefakte entführen Sie direkt nach Kathmandu.',
+      exp2Title: 'Handgemachte Mo:Mo', exp2Desc: 'Unsere Teigtaschen werden täglich frisch zubereitet — ein echter Geschmack der nepalesischen Straßenküche.',
+      exp3Title: '100+ authentische Gerichte', exp3Desc: 'Fleisch, Fisch, vegetarische und vegane Optionen. Von mild bis feurig. Etwas für jeden Gast.',
+      exp4Title: 'Namaste-Willkommen', exp4Desc: 'In Nepal wird ein Gast wie ein Gott behandelt. Englisch, Spanisch &amp; Nepalesisch gesprochen. Familien willkommen.',
+      resTag: 'Reservierungen', resH2: 'Ihren Tisch<br /><em>Reservieren</em>',
+      resLead: 'Spontane Besuche sind willkommen, aber eine Reservierung garantiert das beste Erlebnis — besonders am Wochenende.',
+      resCallTitle: 'Anrufen oder WhatsApp', resCallDesc: 'Wir helfen Ihnen gerne auf Englisch, Spanisch und Nepalesisch.',
+      resAddrTitle: 'Adresse', resHoursTitle: 'Öffnungszeiten', resHours: 'Montag – Sonntag: 12:00 – 23:00',
+      resFormTitle: 'Reservierung Vornehmen', resFirstName: 'Vorname', resLastName: 'Nachname',
+      resEmail: 'E-Mail', resPhone: 'Telefon / WhatsApp', resDate: 'Datum', resTime: 'Uhrzeit', resSelectTime: 'Uhrzeit wählen',
+      resGuests: 'Anzahl der Gäste', resSelectGuests: 'Gäste wählen', resSpecial: 'Besondere Wünsche',
+      resSpecialPlaceholder: 'Allergien, Ernährungsanforderungen, Feiern, Hochstuhl erforderlich...',
+      resSubmit: 'Reservierung Bestätigen →', resNote: 'Wir bestätigen Ihre Buchung innerhalb einer Stunde per Telefon oder WhatsApp.',
+      resSuccess: '🙏 Namaste! Ihre Reservierungsanfrage wurde erhalten.<br />Wir bestätigen in Kürze per Telefon oder WhatsApp.<br />Wir freuen uns, Sie bei Gurkha Kitchen begrüßen zu dürfen!',
+      locTag: 'Finden Sie Uns', locH2: 'Wir sind in <em>Campoamor</em>',
+      locLead: 'In Dehesa De Campoamor, Orihuela Costa — leicht zu finden mit Parkplätzen in der Nähe.',
+      locBook: 'Tisch Buchen', locOpenMaps: 'In Google Maps öffnen',
+      footerAbout: 'Authentische nepalesische &amp; indische Küche in Dehesa De Campoamor, Orihuela Costa, Alicante. Wo Himalaya-Tradition auf mediterrane Wärme trifft — ein Teller nach dem anderen.',
+      footerNav: 'Navigation', footerMenu: 'Speisekarte', footerContact: 'Kontakt',
+      footerAboutLink: 'Über Uns', footerExperience: 'Erlebnis', footerReservations: 'Reservierungen',
+      whatsappLabel: 'Hier klicken zum Kontakt', whatsappSub: 'via WhatsApp',
+      scrollLabel: 'Scrollen',
+    },
+    fr: {
+      flag: '🇫🇷', code: 'FR',
+      navAbout: 'À Propos', navMenu: 'Menu', navExperience: 'Expérience', navFind: 'Nous Trouver', navReserve: 'Réserver une Table',
+      heroTag: '· Dehesa De Campoamor · Alicante',
+      heroH1: 'Cuisine Népalaise<br />&amp; <em>Indienne</em><br />au Bord de la Mer',
+      heroSub: 'Des raviolis Mo:Mo faits à la main aux grillades Tandoori grésillantes — plus de 100 plats himalayens authentiques sur la Costa Blanca.',
+      heroBtnReserve: 'Réserver une Table', heroBtnMenu: 'Voir le Menu Complet',
+      heroStatLabel: 'Plats Authentiques Servis avec Amour', heroStatCall: 'Appeler ou WhatsApp',
+      aboutTag: 'Notre Histoire', aboutH2: 'Là où le Népal<br />Rencontre <em>España</em>',
+      aboutLead: 'Née au pied de l\'Himalaya, notre cuisine apporte la chaleur de l\'hospitalité népalaise sur les rives ensoleillées d\'Orihuela Costa.',
+      feat1Title: '100+ Saveurs Himalayennes Authentiques', feat1Desc: 'Des raviolis Mo:Mo et soupe Dal au Biryani, grillades Tandoori et Korma — quelque chose pour chaque goût.',
+      feat2Title: 'Épices Himalayennes, Ingrédients Locaux', feat2Desc: 'Nous combinons des épices népalaises importées avec les produits les plus frais de la côte valencienne.',
+      feat3Title: 'Sur Place &amp; À Emporter', feat3Desc: 'Profitez d\'une expérience de restaurant complète ou commandez à emporter. Appelez-nous ou écrivez-nous sur WhatsApp : <strong>623 625 993</strong>.',
+      feat4Title: 'Namaste — Vous Êtes Famille', feat4Desc: 'Au Népal, les invités sont traités comme des dieux. Cette philosophie guide chaque visite à notre table.',
+      showcaseTag: 'De Notre Cuisine', showcaseH2: 'Un Festin pour les <em>Yeux</em>', showcaseDesc: 'Chaque assiette raconte une histoire de montagnes, d\'épices et d\'amour transmis de génération en génération.',
+      menuTag: 'Notre Menu', menuH2: 'Ce Que Nous <em>Servons</em>', menuLead: 'Parcourez notre menu complet — des entrées légères aux plats copieux. Disponible sur place et à emporter.',
+      expTag: 'L\'Expérience', expH2: 'Plus qu\'un Simple <em>Repas</em>', expDesc: 'Un voyage à travers la culture himalayenne — au cœur d\'Orihuela Costa.',
+      exp1Title: 'Âme Himalayenne', exp1Desc: 'L\'art Thangka, les lanternes en cuivre et les artefacts népalais vous transportent directement à Katmandou.',
+      exp2Title: 'Mo:Mo Faits à la Main', exp2Desc: 'Nos raviolis sont préparés frais chaque jour — un vrai goût de la cuisine de rue népalaise.',
+      exp3Title: '100+ Plats Authentiques', exp3Desc: 'Options viande, poisson, végétariennes et véganes. De doux à épicé. Quelque chose pour chaque convive.',
+      exp4Title: 'Accueil Namaste', exp4Desc: 'Au Népal, l\'invité est traité comme un dieu. Anglais, espagnol &amp; népalais parlés. Familles bienvenues.',
+      resTag: 'Réservations', resH2: 'Réservez Votre<br /><em>Table</em>',
+      resLead: 'Les sans-réservation sont les bienvenus, mais une réservation garantit la meilleure expérience — surtout le week-end.',
+      resCallTitle: 'Appeler ou WhatsApp', resCallDesc: 'Nous sommes ravis de vous aider en anglais, espagnol et népalais.',
+      resAddrTitle: 'Adresse', resHoursTitle: 'Horaires d\'Ouverture', resHours: 'Lundi – Dimanche : 12h00 – 23h00',
+      resFormTitle: 'Faire une Réservation', resFirstName: 'Prénom', resLastName: 'Nom',
+      resEmail: 'E-mail', resPhone: 'Téléphone / WhatsApp', resDate: 'Date', resTime: 'Heure', resSelectTime: 'Choisir l\'heure',
+      resGuests: 'Nombre de Convives', resSelectGuests: 'Choisir le nombre', resSpecial: 'Demandes Spéciales',
+      resSpecialPlaceholder: 'Allergies, régimes alimentaires, célébrations, chaise haute requise...',
+      resSubmit: 'Confirmer la Réservation →', resNote: 'Nous confirmerons votre réservation par téléphone ou WhatsApp dans l\'heure.',
+      resSuccess: '🙏 Namaste! Votre demande de réservation a été reçue.<br />Nous confirmerons bientôt par téléphone ou WhatsApp.<br />Nous nous réjouissons de vous accueillir au Gurkha Kitchen!',
+      locTag: 'Nous Trouver', locH2: 'Nous Sommes à <em>Campoamor</em>',
+      locLead: 'Situé à Dehesa De Campoamor, Orihuela Costa — facile à trouver avec un parking à proximité.',
+      locBook: 'Réserver une Table', locOpenMaps: 'Ouvrir dans Google Maps',
+      footerAbout: 'Cuisine népalaise &amp; indienne authentique à Dehesa De Campoamor, Orihuela Costa, Alicante. Là où la tradition himalayenne rencontre la chaleur méditerranéenne — une assiette à la fois.',
+      footerNav: 'Navigation', footerMenu: 'Menu', footerContact: 'Contact',
+      footerAboutLink: 'À Propos', footerExperience: 'Expérience', footerReservations: 'Réservations',
+      whatsappLabel: 'Cliquez ici pour contacter', whatsappSub: 'via WhatsApp',
+      scrollLabel: 'Défiler',
+    },
+    es: {
+      flag: '🇪🇸', code: 'ES',
+      navAbout: 'Nosotros', navMenu: 'Menú', navExperience: 'Experiencia', navFind: 'Encuéntranos', navReserve: 'Reservar Mesa',
+      heroTag: '· Dehesa De Campoamor · Alicante',
+      heroH1: 'Cocina Nepalesa<br />&amp; <em>India</em><br />Junto al Mar',
+      heroSub: 'Desde empanadillas Mo:Mo hechas a mano hasta platos Tandoori humeantes — más de 100 platos auténticos del Himalaya en la Costa Blanca.',
+      heroBtnReserve: 'Reservar Mesa', heroBtnMenu: 'Ver Menú Completo',
+      heroStatLabel: 'Platos Auténticos Servidos con Amor', heroStatCall: 'Llamar o WhatsApp',
+      aboutTag: 'Nuestra Historia', aboutH2: 'Donde Nepal<br />Se Encuentra con <em>España</em>',
+      aboutLead: 'Nacida en las estribaciones del Himalaya, nuestra cocina trae la calidez de la hospitalidad nepalesa a las soleadas orillas de Orihuela Costa.',
+      feat1Title: '100+ Sabores Auténticos del Himalaya', feat1Desc: 'Desde empanadillas Mo:Mo y Sopa Dal hasta Biryani, Parrilladas Tandoori y Korma — algo para cada paladar.',
+      feat2Title: 'Especias del Himalaya, Ingredientes Locales', feat2Desc: 'Combinamos especias nepalesas importadas con los productos más frescos de la costa valenciana.',
+      feat3Title: 'En Restaurante &amp; Para Llevar', feat3Desc: 'Disfrute de la experiencia completa del restaurante o pida para llevar. Llámenos o escríbanos por WhatsApp: <strong>623 625 993</strong>.',
+      feat4Title: 'Namaste — Eres Familia', feat4Desc: 'En Nepal, los huéspedes son tratados como dioses. Esa filosofía guía cada visita a nuestra mesa.',
+      showcaseTag: 'Desde Nuestra Cocina', showcaseH2: 'Un Festín para los <em>Ojos</em>', showcaseDesc: 'Cada plato cuenta una historia de montañas, especias y amor de generaciones.',
+      menuTag: 'Nuestro Menú', menuH2: 'Lo Que <em>Servimos</em>', menuLead: 'Explore nuestro menú completo — desde entrantes ligeros hasta platos principales contundentes. Disponible en restaurante y para llevar.',
+      expTag: 'La Experiencia', expH2: 'Más que una Simple <em>Comida</em>', expDesc: 'Un viaje a través de la cultura himalaya — en el corazón de Orihuela Costa.',
+      exp1Title: 'Alma Himalaya', exp1Desc: 'El arte Thangka, linternas de cobre y artefactos nepaleses le transportan directamente a Katmandú.',
+      exp2Title: 'Mo:Mo Hechos a Mano', exp2Desc: 'Nuestras empanadillas se preparan frescas cada día — un verdadero sabor de la comida callejera nepalesa.',
+      exp3Title: '100+ Platos Auténticos', exp3Desc: 'Opciones de carne, pescado, vegetarianas y veganas. Desde suave hasta picante. Algo para cada comensal.',
+      exp4Title: 'Bienvenida Namaste', exp4Desc: 'En Nepal el huésped es tratado como un dios. Hablamos inglés, español &amp; nepalés. Familias bienvenidas.',
+      resTag: 'Reservas', resH2: 'Reserve Su<br /><em>Mesa</em>',
+      resLead: 'Aceptamos sin reserva, pero una reserva garantiza la mejor experiencia — especialmente los fines de semana.',
+      resCallTitle: 'Llamar o WhatsApp', resCallDesc: 'Estamos encantados de atenderle en inglés, español y nepalés.',
+      resAddrTitle: 'Dirección', resHoursTitle: 'Horario de Apertura', resHours: 'Lunes – Domingo: 12:00 – 23:00',
+      resFormTitle: 'Hacer una Reserva', resFirstName: 'Nombre', resLastName: 'Apellido',
+      resEmail: 'Correo Electrónico', resPhone: 'Teléfono / WhatsApp', resDate: 'Fecha', resTime: 'Hora', resSelectTime: 'Seleccionar hora',
+      resGuests: 'Número de Comensales', resSelectGuests: 'Seleccionar comensales', resSpecial: 'Peticiones Especiales',
+      resSpecialPlaceholder: 'Alergias, requerimientos dietéticos, celebraciones, trona necesaria...',
+      resSubmit: 'Confirmar Reserva →', resNote: 'Confirmaremos su reserva por teléfono o WhatsApp en una hora.',
+      resSuccess: '🙏 ¡Namaste! Su solicitud de reserva ha sido recibida.<br />Confirmaremos en breve por teléfono o WhatsApp.<br />¡Esperamos darle la bienvenida en Gurkha Kitchen!',
+      locTag: 'Encuéntranos', locH2: 'Estamos en <em>Campoamor</em>',
+      locLead: 'Ubicado en Dehesa De Campoamor, Orihuela Costa — fácil de encontrar con aparcamiento cercano.',
+      locBook: 'Reservar Mesa', locOpenMaps: 'Abrir en Google Maps',
+      footerAbout: 'Auténtica cocina nepalesa &amp; india en Dehesa De Campoamor, Orihuela Costa, Alicante. Donde la tradición himalaya se encuentra con el calor mediterráneo — un plato a la vez.',
+      footerNav: 'Navegar', footerMenu: 'Menú', footerContact: 'Contacto',
+      footerAboutLink: 'Nosotros', footerExperience: 'Experiencia', footerReservations: 'Reservas',
+      whatsappLabel: 'Haz clic para contactar', whatsappSub: 'vía WhatsApp',
+      scrollLabel: 'Desplazar',
+    },
+    it: {
+      flag: '🇮🇹', code: 'IT',
+      navAbout: 'Chi Siamo', navMenu: 'Menu', navExperience: 'Esperienza', navFind: 'Trovaci', navReserve: 'Prenota un Tavolo',
+      heroTag: '· Dehesa De Campoamor · Alicante',
+      heroH1: 'Cucina Nepalese<br />&amp; <em>Indiana</em><br />sul Mare',
+      heroSub: 'Dai ravioli Mo:Mo fatti a mano ai fumanti piatti Tandoori — oltre 100 piatti himalayani autentici sulla Costa Blanca.',
+      heroBtnReserve: 'Prenota un Tavolo', heroBtnMenu: 'Vedi il Menu Completo',
+      heroStatLabel: 'Piatti Autentici Serviti con Amore', heroStatCall: 'Chiama o WhatsApp',
+      aboutTag: 'La Nostra Storia', aboutH2: 'Dove il Nepal<br />Incontra <em>España</em>',
+      aboutLead: 'Nata ai piedi dell\'Himalaya, la nostra cucina porta il calore dell\'ospitalità nepalese sulle soleggiante rive di Orihuela Costa.',
+      feat1Title: '100+ Sapori Autentici dell\'Himalaya', feat1Desc: 'Dai ravioli Mo:Mo e la zuppa Dal al Biryani, Griglia Tandoori e Korma — qualcosa per ogni gusto.',
+      feat2Title: 'Spezie Himalayane, Ingredienti Locali', feat2Desc: 'Combiniamo spezie nepalesi importate con i prodotti più freschi della costa valenciana.',
+      feat3Title: 'Al Ristorante &amp; Da Asporto', feat3Desc: 'Goditi un\'esperienza completa al ristorante o ordina da asporto. Chiamaci o scrivici su WhatsApp: <strong>623 625 993</strong>.',
+      feat4Title: 'Namaste — Sei di Famiglia', feat4Desc: 'In Nepal, gli ospiti sono trattati come dei. Questa filosofia guida ogni visita al nostro tavolo.',
+      showcaseTag: 'Dalla Nostra Cucina', showcaseH2: 'Un Banchetto per gli <em>Occhi</em>', showcaseDesc: 'Ogni piatto racconta una storia di montagne, spezie e amore tramandato di generazione in generazione.',
+      menuTag: 'Il Nostro Menu', menuH2: 'Cosa <em>Serviamo</em>', menuLead: 'Sfoglia il nostro menu completo — dagli antipasti leggeri ai piatti principali sostanziosi. Disponibile al ristorante e da asporto.',
+      expTag: 'L\'Esperienza', expH2: 'Più di un Semplice <em>Pasto</em>', expDesc: 'Un viaggio attraverso la cultura himalayane — nel cuore di Orihuela Costa.',
+      exp1Title: 'Anima Himalayana', exp1Desc: 'Arte Thangka, lanterne di rame e manufatti nepalesi ti trasportano direttamente a Katmandu.',
+      exp2Title: 'Mo:Mo Fatti a Mano', exp2Desc: 'I nostri ravioli vengono preparati freschi ogni giorno — un vero assaggio della cultura dello street food nepalese.',
+      exp3Title: '100+ Piatti Autentici', exp3Desc: 'Opzioni carne, pesce, vegetariane e vegane. Dal dolce al piccante. Qualcosa per ogni ospite.',
+      exp4Title: 'Benvenuto Namaste', exp4Desc: 'In Nepal l\'ospite è trattato come un dio. Parliamo inglese, spagnolo &amp; nepalese. Famiglie benvenute.',
+      resTag: 'Prenotazioni', resH2: 'Prenota il Tuo<br /><em>Tavolo</em>',
+      resLead: 'Accettiamo anche senza prenotazione, ma una prenotazione garantisce la migliore esperienza — soprattutto nei weekend.',
+      resCallTitle: 'Chiama o WhatsApp', resCallDesc: 'Siamo felici di aiutarti in inglese, spagnolo e nepalese.',
+      resAddrTitle: 'Indirizzo', resHoursTitle: 'Orari di Apertura', resHours: 'Lunedì – Domenica: 12:00 – 23:00',
+      resFormTitle: 'Fai una Prenotazione', resFirstName: 'Nome', resLastName: 'Cognome',
+      resEmail: 'E-mail', resPhone: 'Telefono / WhatsApp', resDate: 'Data', resTime: 'Orario', resSelectTime: 'Seleziona orario',
+      resGuests: 'Numero di Ospiti', resSelectGuests: 'Seleziona ospiti', resSpecial: 'Richieste Speciali',
+      resSpecialPlaceholder: 'Allergie, esigenze dietetiche, celebrazioni, seggiolone necessario...',
+      resSubmit: 'Conferma Prenotazione →', resNote: 'Confermeremo la tua prenotazione per telefono o WhatsApp entro un\'ora.',
+      resSuccess: '🙏 Namaste! La tua richiesta di prenotazione è stata ricevuta.<br />Confermeremo a breve per telefono o WhatsApp.<br />Non vediamo l\'ora di accoglierti al Gurkha Kitchen!',
+      locTag: 'Trovaci', locH2: 'Siamo a <em>Campoamor</em>',
+      locLead: 'Situato a Dehesa De Campoamor, Orihuela Costa — facile da trovare con parcheggio nelle vicinanze.',
+      locBook: 'Prenota un Tavolo', locOpenMaps: 'Apri in Google Maps',
+      footerAbout: 'Autentica cucina nepalese &amp; indiana a Dehesa De Campoamor, Orihuela Costa, Alicante. Dove la tradizione himalayana incontra il calore mediterraneo — un piatto alla volta.',
+      footerNav: 'Naviga', footerMenu: 'Menu', footerContact: 'Contatti',
+      footerAboutLink: 'Chi Siamo', footerExperience: 'Esperienza', footerReservations: 'Prenotazioni',
+      whatsappLabel: 'Clicca qui per contattarci', whatsappSub: 'via WhatsApp',
+      scrollLabel: 'Scorri',
+    }
+  };
+
+  // Map translation keys to DOM element IDs or selectors
+  function applyTranslation(lang) {
+    const t = translations[lang];
+    if (!t) return;
+
+    const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+    const setAttr = (id, attr, val) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, val); };
+    const setAll = (sel, html) => { document.querySelectorAll(sel).forEach(el => el.innerHTML = html); };
+    const setText = (sel, txt) => { document.querySelectorAll(sel).forEach(el => el.textContent = txt); };
+
+    // Nav
+    set('navAbout', t.navAbout); set('navMenu', t.navMenu);
+    set('navExperience', t.navExperience); set('navFind', t.navFind);
+    document.querySelectorAll('.nav-cta').forEach(el => el.textContent = t.navReserve);
+
+    // Hero
+    set('heroTag', t.heroTag); set('heroH1', t.heroH1); set('heroSub', t.heroSub);
+    set('heroBtnReserve', t.heroBtnReserve); set('heroBtnMenu', t.heroBtnMenu);
+    set('heroStatLabel', t.heroStatLabel); set('heroStatCall', t.heroStatCall);
+
+    // About
+    set('aboutTag', t.aboutTag); set('aboutH2', t.aboutH2); set('aboutLead', t.aboutLead);
+    set('feat1Title', t.feat1Title); set('feat1Desc', t.feat1Desc);
+    set('feat2Title', t.feat2Title); set('feat2Desc', t.feat2Desc);
+    set('feat3Title', t.feat3Title); set('feat3Desc', t.feat3Desc);
+    set('feat4Title', t.feat4Title); set('feat4Desc', t.feat4Desc);
+
+    // Showcase
+    set('showcaseTag', t.showcaseTag); set('showcaseH2', t.showcaseH2); set('showcaseDesc', t.showcaseDesc);
+
+    // Menu
+    set('menuTag', t.menuTag); set('menuH2', t.menuH2); set('menuLead', t.menuLead);
+
+    // Experience
+    set('expTag', t.expTag); set('expH2', t.expH2); set('expDesc', t.expDesc);
+    set('exp1Title', t.exp1Title); set('exp1Desc', t.exp1Desc);
+    set('exp2Title', t.exp2Title); set('exp2Desc', t.exp2Desc);
+    set('exp3Title', t.exp3Title); set('exp3Desc', t.exp3Desc);
+    set('exp4Title', t.exp4Title); set('exp4Desc', t.exp4Desc);
+
+    // Reservation section
+    set('resTag', t.resTag); set('resH2', t.resH2); set('resLead', t.resLead);
+    set('resCallTitle', t.resCallTitle); set('resCallDesc', t.resCallDesc);
+    set('resAddrTitle', t.resAddrTitle); set('resHoursTitle', t.resHoursTitle); set('resHours', t.resHours);
+    set('resFormTitle', t.resFormTitle);
+    set('resFirstNameLabel', t.resFirstName); set('resLastNameLabel', t.resLastName);
+    set('resEmailLabel', t.resEmail); set('resPhoneLabel', t.resPhone);
+    set('resDateLabel', t.resDate); set('resTimeLabel', t.resTime);
+    set('resGuestsLabel', t.resGuests); set('resSpecialLabel', t.resSpecial);
+    setAttr('resSpecialTextarea', 'placeholder', t.resSpecialPlaceholder);
+    set('resSubmitBtn', t.resSubmit); set('resNote', t.resNote);
+    set('resSuccess', t.resSuccess);
+    const timeSelect = document.querySelector('[name="reservation_time"] option[value=""]');
+    if (timeSelect) timeSelect.textContent = t.resSelectTime;
+    const guestsSelect = document.querySelector('[name="guests"] option[value=""]');
+    if (guestsSelect) guestsSelect.textContent = t.resSelectGuests;
+
+    // Location
+    set('locTag', t.locTag); set('locH2', t.locH2); set('locLead', t.locLead);
+    document.querySelectorAll('.locBook').forEach(el => el.textContent = t.locBook);
+    set('locOpenMaps', t.locOpenMaps);
+
+    // Footer
+    set('footerAbout', t.footerAbout); set('footerNavTitle', t.footerNav);
+    set('footerMenuTitle', t.footerMenu); set('footerContactTitle', t.footerContact);
+    set('footerAboutLink', t.footerAboutLink); set('footerExperienceLink', t.footerExperience);
+    set('footerReservationsLink', t.footerReservations);
+
+    // WhatsApp
+    set('whatsappLabel', t.whatsappLabel); set('whatsappSub', t.whatsappSub);
+
+    // Scroll
+    set('scrollLabel', t.scrollLabel);
+
+    // Lang selector UI
+    document.getElementById('currentFlag').textContent = t.flag;
+    document.getElementById('currentLangCode').textContent = t.code;
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.dataset.lang === lang);
+    });
+    document.querySelectorAll('.lang-mobile-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.langM === lang);
+    });
+
+    // Persist
+    localStorage.setItem('gk-lang', lang);
+  }
+
+  // Desktop dropdown toggle
+  const langSelector = document.getElementById('langSelector');
+  const langBtn = document.getElementById('langBtn');
+  langBtn.addEventListener('click', (e) => { e.stopPropagation(); langSelector.classList.toggle('open'); });
+  document.addEventListener('click', () => langSelector.classList.remove('open'));
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => { applyTranslation(opt.dataset.lang); langSelector.classList.remove('open'); });
+  });
+
+  // Mobile buttons
+  document.querySelectorAll('.lang-mobile-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyTranslation(btn.dataset.langM));
+  });
+
+  // Init language from storage or browser
+  (function initLang() {
+    const saved = localStorage.getItem('gk-lang');
+    if (saved && translations[saved]) { applyTranslation(saved); return; }
+    const browser = (navigator.language || '').toLowerCase().slice(0,2);
+    const map = { de:'de', fr:'fr', es:'es', it:'it' };
+    applyTranslation(map[browser] || 'en');
+  })();
   function handleReservationSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('resForm');
     const successMsg = document.getElementById('successMsg');
     const btn = form.querySelector('.form-submit');
-    btn.textContent = 'Sending…';
+    btn.textContent = '⏳';
     btn.disabled = true;
     fetch(form.action, {
       method: 'POST',
@@ -1010,12 +1442,15 @@
     .then(data => {
       if (data.ok || data.success) {
         form.style.display = 'none';
+        const lang = localStorage.getItem('gk-lang') || 'en';
+        successMsg.innerHTML = translations[lang]?.resSuccess || translations.en.resSuccess;
         successMsg.style.display = 'block';
         successMsg.scrollIntoView({ behavior: 'smooth' });
       } else { throw new Error('Error'); }
     })
     .catch(() => {
-      btn.textContent = 'Confirm Reservation →';
+      const lang = localStorage.getItem('gk-lang') || 'en';
+      btn.textContent = translations[lang]?.resSubmit || 'Confirm Reservation →';
       btn.disabled = false;
       alert('There was a problem. Please call us directly: 623 625 993');
     });
