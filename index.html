@@ -462,34 +462,21 @@
     .lang-option-flag { font-size: 1.1rem; }
     .lang-option-name { flex: 1; }
     .lang-option-native { font-size: 0.7rem; color: var(--text-muted); }
+    /* Desktop: show desktop selector, hide mobile topbar one */
+    .lang-selector-topbar { display: none; }
     @media (max-width: 900px) {
-      .lang-selector { display: none; }
-      .lang-selector-mobile { display: flex !important; }
+      /* Hide desktop selector inside nav-links */
+      .nav-links .lang-selector { display: none; }
+      /* Show the topbar version */
+      .lang-selector-topbar { display: inline-flex !important; }
+      /* On mobile, always white border since nav bg is always solid */
+      .lang-btn-mobile { border-color: rgba(255,255,255,0.3) !important; color: rgba(255,255,255,0.85) !important; }
+      [data-theme="light"] .lang-btn-mobile { border-color: rgba(0,0,0,0.2) !important; color: var(--text-secondary) !important; }
+      /* Dropdown opens to the left so it doesn't clip off screen */
+      .lang-dropdown-mobile { right: 0; left: auto; }
     }
-    .lang-selector-mobile {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 0;
-      border-top: 1px solid var(--border);
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-    .lang-mobile-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1.5px solid var(--border-strong);
-      background: none;
-      cursor: pointer;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      transition: all .2s;
-    }
-    .lang-mobile-btn:hover, .lang-mobile-btn.active { border-color: var(--bronze); color: var(--bronze); background: rgba(196,154,90,0.08); }
+    .lang-selector-mobile { display: none; }
+    .lang-mobile-btn { display: none; }
   </style>
 </head>
 <body>
@@ -516,15 +503,6 @@
     <li><a href="#location" id="navFind">Find Us</a></li>
     <li><a href="#reservation" class="nav-cta">Reserve a Table</a></li>
     <li>
-      <div class="lang-selector-mobile" id="langSelectorMobile">
-        <button class="lang-mobile-btn active" data-lang-m="en">🇬🇧 EN</button>
-        <button class="lang-mobile-btn" data-lang-m="de">🇩🇪 DE</button>
-        <button class="lang-mobile-btn" data-lang-m="fr">🇫🇷 FR</button>
-        <button class="lang-mobile-btn" data-lang-m="es">🇪🇸 ES</button>
-        <button class="lang-mobile-btn" data-lang-m="it">🇮🇹 IT</button>
-      </div>
-    </li>
-    <li>
       <div class="lang-selector" id="langSelector">
         <button class="lang-btn" id="langBtn" aria-label="Select language">
           <span class="lang-flag" id="currentFlag">🇬🇧</span>
@@ -546,7 +524,21 @@
       </button>
     </li>
   </ul>
-  <div style="display:flex;align-items:center;gap:14px;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div class="lang-selector lang-selector-topbar" id="langSelectorMobile">
+      <button class="lang-btn lang-btn-mobile" id="langBtnMobile" aria-label="Select language">
+        <span class="lang-flag" id="currentFlagMobile">🇬🇧</span>
+        <span id="currentLangCodeMobile">EN</span>
+        <span class="lang-arrow">▼</span>
+      </button>
+      <div class="lang-dropdown lang-dropdown-mobile" id="langDropdownMobile">
+        <button class="lang-option" data-lang-m="en"><span class="lang-option-flag">🇬🇧</span><span class="lang-option-name">English</span><span class="lang-option-native">English</span></button>
+        <button class="lang-option" data-lang-m="de"><span class="lang-option-flag">🇩🇪</span><span class="lang-option-name">German</span><span class="lang-option-native">Deutsch</span></button>
+        <button class="lang-option" data-lang-m="fr"><span class="lang-option-flag">🇫🇷</span><span class="lang-option-name">French</span><span class="lang-option-native">Français</span></button>
+        <button class="lang-option" data-lang-m="es"><span class="lang-option-flag">🇪🇸</span><span class="lang-option-name">Spanish</span><span class="lang-option-native">Español</span></button>
+        <button class="lang-option" data-lang-m="it"><span class="lang-option-flag">🇮🇹</span><span class="lang-option-name">Italian</span><span class="lang-option-native">Italiano</span></button>
+      </div>
+    </div>
     <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme" style="display:none;">
       <div class="theme-toggle-knob" id="themeKnobMobile">☀️</div>
     </button>
@@ -1390,32 +1382,52 @@
     // Scroll
     set('scrollLabel', t.scrollLabel);
 
-    // Lang selector UI
-    document.getElementById('currentFlag').textContent = t.flag;
-    document.getElementById('currentLangCode').textContent = t.code;
-    document.querySelectorAll('.lang-option').forEach(opt => {
-      opt.classList.toggle('active', opt.dataset.lang === lang);
-    });
-    document.querySelectorAll('.lang-mobile-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.langM === lang);
-    });
-
+    // Lang selector UI — updated via updateSelectorUI() called after applyTranslation
     // Persist
     localStorage.setItem('gk-lang', lang);
+    // Update both selector UIs (defined below)
+    if (typeof updateSelectorUI === 'function') updateSelectorUI(lang);
+  }
+
+  // Separate UI updater called after translations dict is ready
+  function updateSelectorUI(lang) {
+    const t = translations[lang];
+    document.getElementById('currentFlag').textContent = t.flag;
+    document.getElementById('currentLangCode').textContent = t.code;
+    const mf = document.getElementById('currentFlagMobile');
+    const mc = document.getElementById('currentLangCodeMobile');
+    if (mf) mf.textContent = t.flag;
+    if (mc) mc.textContent = t.code;
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      const l = opt.dataset.lang || opt.dataset.langM;
+      opt.classList.toggle('active', l === lang);
+    });
   }
 
   // Desktop dropdown toggle
   const langSelector = document.getElementById('langSelector');
   const langBtn = document.getElementById('langBtn');
   langBtn.addEventListener('click', (e) => { e.stopPropagation(); langSelector.classList.toggle('open'); });
-  document.addEventListener('click', () => langSelector.classList.remove('open'));
-  document.querySelectorAll('.lang-option').forEach(opt => {
+
+  // Mobile topbar dropdown toggle
+  const langSelectorMobile = document.getElementById('langSelectorMobile');
+  const langBtnMobile = document.getElementById('langBtnMobile');
+  langBtnMobile.addEventListener('click', (e) => { e.stopPropagation(); langSelectorMobile.classList.toggle('open'); });
+
+  // Close both dropdowns on outside click
+  document.addEventListener('click', () => {
+    langSelector.classList.remove('open');
+    langSelectorMobile.classList.remove('open');
+  });
+
+  // Desktop options
+  document.querySelectorAll('#langSelector .lang-option').forEach(opt => {
     opt.addEventListener('click', () => { applyTranslation(opt.dataset.lang); langSelector.classList.remove('open'); });
   });
 
-  // Mobile buttons
-  document.querySelectorAll('.lang-mobile-btn').forEach(btn => {
-    btn.addEventListener('click', () => applyTranslation(btn.dataset.langM));
+  // Mobile topbar options
+  document.querySelectorAll('#langSelectorMobile .lang-option').forEach(opt => {
+    opt.addEventListener('click', () => { applyTranslation(opt.dataset.langM); langSelectorMobile.classList.remove('open'); });
   });
 
   // Init language from storage or browser
