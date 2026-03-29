@@ -913,7 +913,7 @@
     </div>
     <div class="form-card reveal-right">
   <h3 id="resFormTitle">Make a Reservation</h3>
-  <form id="resForm" action="https://script.google.com/macros/s/AKfycbyFPLMEQy-NcOpYdgAiM0CJq_ywFubIlSd-UUfRTBRJ39VT-GCZ0r3yeBpNyAC8KHEslA/exec" method="POST" onsubmit="handleReservationSubmit(event)">
+  <form id="resForm" action="https://script.google.com/macros/s/AKfycbwGT4ccOXFYQHodMzjBxpTlPP9PYSnLSHdtvEo853Pq-g02LZHRE8ZkMKm93QfC0SpfuQ/exec" method="POST" onsubmit="handleReservationSubmit(event)">
     <input type="text" name="_gotcha" style="display:none" />
     <input type="hidden" name="_subject" value="New Reservation Request - Gurkha Kitchen" />
     
@@ -1493,24 +1493,22 @@
   btn.textContent = '⏳ Sending...';
   btn.disabled = true;
 
-  // Convert FormData to plain object
+  // Encode as URL params — required for Google Apps Script CORS compatibility
   const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
+  const params = new URLSearchParams();
+  formData.forEach((value, key) => params.append(key, value));
 
   fetch(form.action, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
+    mode: 'no-cors',                              // ← avoids preflight block
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
   })
-  .then(r => r.json())
-  .then(result => {
-    if (result.status === 'ok') {
-      form.style.display = 'none';
-      successMsg.style.display = 'block';
-      successMsg.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      throw new Error(result.message || 'Submission failed');
-    }
+  .then(() => {
+    // no-cors means we can't read the response — assume success if no network error
+    form.style.display = 'none';
+    successMsg.style.display = 'block';
+    successMsg.scrollIntoView({ behavior: 'smooth' });
   })
   .catch(err => {
     console.error(err);
