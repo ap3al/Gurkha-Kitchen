@@ -380,6 +380,27 @@
       .showcase-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 230px 230px; }
       .showcase-item:first-child { grid-row: auto; grid-column: 1/-1; }
       .menu-items-grid { grid-template-columns: 1fr; gap: 10px; }
+
+      /* ── FIX: solid background on the right-side controls when menu is open ── */
+      .nav-right-controls {
+        position: relative;
+        z-index: 201;
+        padding: 6px 10px;
+        border-radius: 30px;
+        transition: background .25s, box-shadow .25s;
+      }
+      .nav-right-controls.menu-open {
+        background: var(--bg-card);
+        box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+      }
+      [data-theme="light"] .nav-right-controls.menu-open {
+        background: #FFFFFF;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+      }
+      /* Make hamburger lines always visible over the panel */
+      .hamburger span { background: rgba(255,255,255,0.85); }
+      nav.menu-open .hamburger span,
+      .nav-right-controls.menu-open .hamburger span { background: var(--text-primary) !important; }
     }
     @media (max-width: 600px) {
       .footer-top { grid-template-columns: 1fr; }
@@ -524,7 +545,7 @@
       </button>
     </li>
   </ul>
-  <div style="display:flex;align-items:center;gap:10px;">
+  <div class="nav-right-controls" id="navRightControls" style="display:flex;align-items:center;gap:10px;">
     <div class="lang-selector lang-selector-topbar" id="langSelectorMobile">
       <button class="lang-btn lang-btn-mobile" id="langBtnMobile" aria-label="Select language">
         <span class="lang-flag" id="currentFlagMobile">🇬🇧</span>
@@ -1055,9 +1076,18 @@
   /* ── MOBILE MENU ── */
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); hamburger.classList.toggle('open'); });
+  const navRightControls = document.getElementById('navRightControls');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    navRightControls.classList.toggle('menu-open');
+  });
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => { navLinks.classList.remove('open'); hamburger.classList.remove('open'); });
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      navRightControls.classList.remove('menu-open');
+    });
   });
   function checkMobile() { themeToggleMobile.style.display = window.innerWidth <= 900 ? 'block' : 'none'; }
   checkMobile();
